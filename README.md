@@ -1,4 +1,4 @@
-# hotel-management-vue
+# hotel-management-backend
 
 ## Project setup
 ```
