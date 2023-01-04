@@ -1,0 +1,150 @@
+/*-----------------------
+* CLASSES DO MODAL LOGIN
+*------------------------
+*/
+.modalLogin__body, .modalLogin__header {
+    margin: 0;
+    color: #e1c888;
+    background: #213242;
+    font: "Quicksand";
+    font-weight: bold;
+}
+
+.modalLogin__footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.modalLogin__footer a:hover, .modalLogin__footer label:hover {
+    cursor: pointer;
+    color: #cf9903;
+}
+
+.modalLogin__container {
+    width: 100%;
+    margin: auto;
+    margin-top: 5%;
+    max-width: 525px;
+    min-height: 670px;
+    position: relative;
+    box-shadow: 0 12px 15px 0 rgba(0,0,0, .24), 0 17px 50px 0 rgba(0,0,0, .19);
+}
+
+.modalLogin__box {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 10px 70px 50px 70px;
+    background: #213242;
+}
+
+.modalLogin__box .sign-in-htm,
+.modalLogin__box .sign-up-htm {
+    top: 30%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    transition: all .4s linear;
+}
+
+.modalLogin__box .sign-up-htm {
+    top: 10%;
+}
+
+.modalLogin__box .sign-in,
+.modalLogin__box .sign-up,
+.login-form .modalLogin__group .check {
+    display: none;
+}
+
+.modalLogin__box .item,
+.login-form .modalLogin__group .label,
+.login-form .modalLogin__group .button {
+    text-transform: uppercase;
+}
+
+.modalLogin__box .item {
+    font-size: 22px;
+    margin-top: 15px;
+    padding-bottom: 5px;
+    margin: 0 15px 10px 0;
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+
+.modalLogin__box .sign-in:checked+.item,
+.modalLogin__box .sign-up:checked+.item {
+    color: #fff;
+    border-color: #cf9903;
+}
+
+.login-form {
+    min-height: 345px;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.login-form .modalLogin__group {
+    margin-bottom: 15px;
+}
+
+.login-form .modalLogin__group .label,
+.login-form .modalLogin__group .input,
+.login-form .modalLogin__group .button {
+    width: 100%;
+    color: #fff;
+    display: block;
+}
+
+.button {
+    cursor: pointer;
+}
+
+.login-form .modalLogin__group .input,
+.login-form .modalLogin__group .button {
+    border: none;
+    padding: 15px 20px;
+    border-radius: 25px;
+    background: rgba(255,255,255, .1);
+}
+
+.login-form .modalLogin__group input[data-type="password"] {
+    text-security: circle;
+    -webkit-text-security: circle;
+}
+
+.login-form .modalLogin__group .label {
+    color: #aaa;
+    font-size: 12px;
+}
+
+.login-form .modalLogin__group .button {
+    background: #e1c888;
+}
+
+.login-form .modalLogin__group .check:checked+label {
+    color: #fff;
+}
+
+.modalLogin__box .sign-in:checked+.item+.sign-up+.item+.login-form .sign-in-htm {
+    transform: rotate(0);
+}
+
+.modalLogin__box .sign-up:checked+.item+.login-form .sign-up-htm {
+    transform: rotate(0);
+}
+
+.hr {
+    height: 2px;
+    margin: 60px 0 50px 0;
+    background: rgba(255, 255, 255, .2);
+}
+
+.modalLogin__footer {
+    text-align: center;
+}

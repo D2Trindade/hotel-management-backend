@@ -1,0 +1,87 @@
+.global-bg-azul {
+  background-color: #213242;
+  background-size: 100%;
+  margin: 0;
+}
+
+.color--bege {
+  color: #e1c888 !important;
+}
+
+.header--container {
+  background-image: url("@/assets/images/background/background-1.png");
+  background-size: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
+  height: 300px;
+  color: #e1c888;
+  font: "Quicksand";
+  text-shadow: 1px 1px 1px rgba(1, 1, 8, 0.6);
+}
+
+.header--container2 {
+  width: 70%;
+}
+.header--container2-container {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+}
+.header--container2-item {
+  padding: 1rem;
+}
+.header--container2-link {
+  color: #e1c888;
+}
+
+.header--logo {
+  background: url("@/assets/images/logo/logo--bege.png") no-repeat transparent;
+  background-size: 100%;
+  width: 100px;
+  height: 100px;
+  padding: 0 0 0 0;
+  margin: 20px;
+  font: "Quicksand";
+  letter-spacing: 0;
+}
+
+.nav-link {
+  color: #e1c888 !important;
+}
+.nav-link:hover {
+  color: #cf9903;
+}
+
+.nav-link.router-link-active,
+.nav-link.router-link-exact-active {
+    font-weight: bold;
+    color: #cf9903;
+}
+
+.footer__logo {
+  width: 75px;
+}
+
+@media (max-width: 734px) {
+  .header--container{
+    height: 240px;
+  } 
+}
+
+@media (max-width: 579px) {
+  .header--container {
+    height: 200px;
+  }
+}
+
+@media (max-width: 489px) {
+  .header--container {
+    height: 170px;
+    background-color: #213242;
+  }
+}
+
+
+
