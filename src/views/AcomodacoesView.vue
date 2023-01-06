@@ -46,25 +46,57 @@
         
       </div>
 
+      <div class="container">
+        <input type="number" id="comentarioPontuacao" max="5" min="1" required>
+        <textarea id="comentarioDescricao" required></textarea>
+        <button class="btn btn-primary" @click="enviaComentario">ENVIAR</button>
+      </div>
+
       <aside></aside>
     </main>
 </template>
 
 <script>
-// import "@/assets/css/acomodacoes.css"
+import "@/assets/js/Comentario.js"
 
 import AcomodacaoCard from '@/components/AcomodacaoCard.vue'
+import { Comentario } from '@/assets/js/Comentario.js'
 
 export default{
   name: 'AcomodacoesView',
   components: {
     AcomodacaoCard
+  },
+  data() {
+    return {
+        comentarios: []
+    }
+  },
+  methods: {
+    enviaComentario() {
+      // Verifica se usuário está logado
+      if (!localStorage.getItem('login')) {
+        alert('Para enviar comentarios, é necessário fazer login!')
+        return
+      }
+      // Verifica se os campos estão preenchidos
+      if (document.querySelector('#comentarioPontuacao').value == '' || document.querySelector('#comentarioDescricao').value == '') {
+        alert ('Por favor, preencha todos os campos')
+        return
+      }
+
+      // Cria o objeto Comentario
+      let comment = new Comentario(localStorage.getItem('login'),
+                                   document.querySelector('#comentarioPontuacao').value,
+                                   document.querySelector('#comentarioDescricao').value )
+
+      comment.salvarComentario(this.comentarios)     
+    }
   }
 }
 </script>
 
 <style scoped>
-
 /*----------------------------------
 * CLASSES COMUNS EM TODAS AS PÁGINAS
 *-----------------------------------
