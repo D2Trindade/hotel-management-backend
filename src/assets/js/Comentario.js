@@ -3,11 +3,13 @@ export class Comentario {
     #usuario
     #pontuacao
     #descricao
+    #quarto
     
-    constructor(usuario, pontuacao, descricao) {
+    constructor(usuario, pontuacao, descricao, quarto) {
         this.#usuario = usuario
         this.#pontuacao = pontuacao
         this.#descricao = descricao
+        this.#quarto = quarto
     }
 
     getUsuario(){
@@ -18,6 +20,9 @@ export class Comentario {
     }
     getDescricao() {
         return this.#descricao
+    }
+    getQuarto() {
+        return this.#quarto
     }
     setPontuacao(newValue) {
         this.#pontuacao = newValue
@@ -35,9 +40,12 @@ export class Comentario {
         comentarios.push({
             usuario: this.#usuario,
             pontuacao: this.#pontuacao,
-            descricao: this.#descricao
+            descricao: this.#descricao,
+            quarto: this.#quarto
         })
         // Salva a lista atualizada no localStorage
         localStorage.setItem('comentarios', JSON.stringify(comentarios))
+
+        alert('Comentário salvo com sucesso!')
     }
 }

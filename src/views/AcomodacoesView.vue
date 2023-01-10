@@ -9,9 +9,9 @@
         <h3 class="h3-primario">Quartos Standard:</h3>
       </div>
       <div class="acomodacoes acomodacoes--presidencial">
-        <router-link to="/reservas"><AcomodacaoCard id="7"/></router-link>
-        <router-link to="/reservas"><AcomodacaoCard id="8"/></router-link>
-        <router-link to="/reservas"><AcomodacaoCard id="9"/></router-link>
+        <AcomodacaoCard id="7" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('standard')" />
+        <AcomodacaoCard id="8" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('standard')" />
+        <AcomodacaoCard id="9" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('standard')" />
         <div class="p-top">
             <p class="p-primario">Com 60 m², nossas suítes Standard, dispõem de cama Twin e banheiros com box separado.</p>          
         </div>
@@ -22,9 +22,9 @@
         <h3 class="h3-primario">Quartos Luxo:</h3>
       </div>
       <div class="acomodacoes acomodacoes--luxo">
-        <router-link to="/reservas"><AcomodacaoCard id="4"/></router-link>
-        <router-link to="/reservas"><AcomodacaoCard id="5"/></router-link>
-        <router-link to="/reservas"><AcomodacaoCard id="6"/></router-link>
+        <AcomodacaoCard id="4" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('luxo')" />
+        <AcomodacaoCard id="5" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('luxo')" />
+        <AcomodacaoCard id="6" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('luxo')" />
         <div class="p-top">
             <p class="p-primario">Com 90 m², nossas suítes Luxo, dispõem de cama King Size ou Twin e ainda uma confortável área de trabalho. A ampla sala de estar está mobiliada com poltrona, sofá e mesa de café. Os banheiros contam com box separado.</p>
         </div>
@@ -35,9 +35,9 @@
         <h3 class="h3-primario">Quartos Presidenciais:</h3>
       </div>
       <div class="acomodacoes acomodacoes--standard">
-        <router-link to="/reservas"><AcomodacaoCard id="1" /></router-link>
-        <router-link to="/reservas"><AcomodacaoCard id="2"/></router-link>
-        <router-link to="/reservas"><AcomodacaoCard id="3"/></router-link>
+        <AcomodacaoCard id="1"  data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('presidencial')" />
+        <AcomodacaoCard id="2" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('presidencial')" />
+        <AcomodacaoCard id="3" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('presidencial')" />
         <div class="p-top">
             <p class="p-primario">Com 160 m², nossas suítes Presidenciais contam com espaços privilegiados, cozinha, escritório e sala de estar. O dormitório apresenta um espaço grande, único, integrado e muito iluminado, com vista exuberante. Além disso, dispõe de
             banheiro com uma espaçosa jacuzzi, chuveiro “rain shower” duplo e sauna. Os hóspedes da suíte têm direito a massagens no
@@ -46,13 +46,7 @@
         
       </div>
 
-      <div class="container">
-        <input type="number" id="comentarioPontuacao" max="5" min="1" required>
-        <textarea id="comentarioDescricao" required></textarea>
-        <button class="btn btn-primary" @click="enviaComentario">ENVIAR</button>
-      </div>
-
-      <aside></aside>
+      <ModalAcomodacoes :nomeQuarto="quarto" />
     </main>
 </template>
 
@@ -60,19 +54,25 @@
 import "@/assets/js/Comentario.js"
 
 import AcomodacaoCard from '@/components/AcomodacaoCard.vue'
+import ModalAcomodacoes from '@/components/ModalAcomodacoes.vue'
 import { Comentario } from '@/assets/js/Comentario.js'
 
 export default{
   name: 'AcomodacoesView',
   components: {
-    AcomodacaoCard
+    AcomodacaoCard,
+    ModalAcomodacoes
   },
   data() {
     return {
-        comentarios: []
+        comentarios: [],
+        quarto: ''
     }
   },
   methods: {
+    escolheQuarto(quarto) {
+      this.quarto = quarto
+    },
     enviaComentario() {
       // Verifica se usuário está logado
       if (!localStorage.getItem('login')) {

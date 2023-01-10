@@ -47,6 +47,7 @@ export default {
             document.querySelector('#logado-usuario').innerText = ''
             document.querySelector('#logado').classList.add('esconder')
             document.querySelector('#cadastro').classList.remove('esconder')
+            document.querySelector(".modalNovoComentario").classList.add ('esconder')
         }
     },
     mounted: function() {

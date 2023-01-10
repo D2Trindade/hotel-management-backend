@@ -110,6 +110,7 @@ export default {
                 localStorage.setItem('login', loginEmail)
                 document.querySelector('#logado').classList.remove('esconder')
                 document.querySelector('#cadastro').classList.add('esconder')
+                document.querySelector(".modalNovoComentario").classList.remove ('esconder')
                 document.querySelector('#logado-usuario').innerText = `Bem-vindo ${this.cadastros[valida].nome}`
             } else {
                 alert ('Cadastro não encontrado!')
