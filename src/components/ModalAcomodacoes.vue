@@ -11,26 +11,26 @@
                         <div class="container modalNovoComentario shadow-lg p-3 my-5 mx-auto bg-white rounded w-75">
                             <h4 class="h3-primario text-center my-3">Deixe sua avaliação aqui:</h4>
                             <label class="d-flex p-primario text-center" for="comentarioPontuacao">Avalie o quarto {{nomeQuarto.toUpperCase()}}: </label>
-                            <div class="d-flex justify-content-center avaliacao flex-row-reverse">
+                            <div class="d-flex justify-content-center avaliacao flex-row-reverse" id="" required>
                             
-                                <input type="radio" id="estrela1" name="avaliacao" value="5" /><label class="full" for="estrela1"
+                                <input type="radio" id="estrela1" name="avaliacao" value="5" /><label for="estrela1"
                                     title="Excelente - 5 estrelas"><i class="fa fa-star fs-2 mx-3 my-2 star" value="1"
                                         aria-hidden="true"></i></label>
                             
                                 <input type="radio" id="estrela2" name="avaliacao" value="4" />
-                                <label class="full" for="estrela2" title="Muito Bom - 4 estrelas"><i class="fa fa-star fs-2 mx-3 my-2" value="1"
+                                <label for="estrela2" title="Muito Bom - 4 estrelas"><i class="fa fa-star fs-2 mx-3 my-2" value="1"
                                         aria-hidden="true"></i></label>
                             
                                 <input type="radio" id="estrela3" name="avaliacao" value="3" />
-                                <label class="full" for="estrela3" title="Bom - 3 estrelas"><i class="fa fa-star fs-2 mx-3 my-2" value="1"
+                                <label for="estrela3" title="Bom - 3 estrelas"><i class="fa fa-star fs-2 mx-3 my-2" value="1"
                                         aria-hidden="true"></i></label>
                             
                                 <input type="radio" id="estrela4" name="avaliacao" value="2" />
-                                <label class="full" for="estrela4" title="Ruim - 2 estrelas"><i class="fa fa-star fs-2 mx-3 my-2" value="1"
+                                <label for="estrela4" title="Ruim - 2 estrelas"><i class="fa fa-star fs-2 mx-3 my-2" value="1"
                                         aria-hidden="true"></i></label>
                             
                                 <input type="radio" id="estrela5" name="avaliacao" value="1" />
-                                <label class="full" for="estrela5" title="Péssimo - 1 estrela"><i class="fa fa-star fs-2 mx-3 my-2" value="1"
+                                <label for="estrela5" title="Péssimo - 1 estrela"><i class="fa fa-star fs-2 mx-3 my-2" value="1"
                                         aria-hidden="true"></i></label>
                             </div>
                             <!-- <input class="d-flex" type="number" id="comentarioPontuacao" max="5" min="1" required> -->
@@ -72,7 +72,8 @@ export default {
     methods: {
         enviaComentario() {
             let comentarioUsuario = localStorage.getItem('login')
-            let comentarioPontuacao = document.querySelector("#comentarioPontuacao").value
+            // let comentarioPontuacao = document.querySelector("#comentarioPontuacao").value
+            let comentarioPontuacao = document.querySelector('input[name="avaliacao"]:checked')
             let comentarioDescricao = document.querySelector("#comentarioDescricao").value
 
             // Validar se os campos do comentário estão preenchidos
@@ -82,7 +83,7 @@ export default {
             }
 
             // Cria um objeto Comentário
-            let comentario = new Comentario(comentarioUsuario, parseInt(comentarioPontuacao), comentarioDescricao, this.nomeQuarto)
+            let comentario = new Comentario(comentarioUsuario, parseInt(comentarioPontuacao.value), comentarioDescricao, this.nomeQuarto)
             // Acrescenta o comentario aos comentarios no localstorage
             comentario.salvarComentario(this.comentarios)
 
