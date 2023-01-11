@@ -46,7 +46,7 @@
         
       </div>
 
-      <ModalAcomodacoes :nomeQuarto="quarto" />
+      <ModalAcomodacoes :nomeQuarto="quarto" ref="modalAcom"/>
     </main>
 </template>
 
@@ -72,6 +72,9 @@ export default{
   methods: {
     escolheQuarto(quarto) {
       this.quarto = quarto
+
+      // Atualiza comentários
+      this.$refs.modalAcom.atualizaComentarios(quarto)      
     },
     enviaComentario() {
       // Verifica se usuário está logado

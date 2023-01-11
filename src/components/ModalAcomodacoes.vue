@@ -90,16 +90,21 @@ export default {
             // Limpa campos de comentário e atualizar a variável comentários
             document.querySelector("#comentarioPontuacao").value = ''
             document.querySelector("#comentarioDescricao").value = ''
-            this.comentarios = JSON.parse(localStorage.getItem('comentarios'))        
+            // this.comentarios = JSON.parse(localStorage.getItem('comentarios'))
+        },
+        atualizaComentarios(quarto) {
+            this.comentarios = []
+            let comentarios = JSON.parse(localStorage.getItem('comentarios'))
+
+            for (let i = 0; i < comentarios.length; i++) {
+                // Preenche o array apenas com os comentarios do quarto clicado
+                if(comentarios[i].quarto == quarto) {
+                    this.comentarios.push(comentarios[i])
+                }          
+            }
         }
     }, 
-    mounted: function() {
-        let comentarios = JSON.parse(localStorage.getItem('comentarios'))
-
-        for (let i = 0; i < comentarios.length; i++) {
-            this.comentarios.push(comentarios[i])            
-        }
-        
+    mounted: function() {    
         // Verifica se algum usuário está logado para comentar
         if (! localStorage.getItem('login')) {
             document.querySelector(".modalNovoComentario").classList.add ('esconder')
