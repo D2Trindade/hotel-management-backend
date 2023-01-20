@@ -16,6 +16,7 @@
                 <p class="p-primario" v-else-if="(quarto === 'presidencial')">{{ descricao[0].presidencial }}</p>
                 <p class="p-primario">Quantidade de pessoas: {{ qtdPessoas}}</p>
                 <p class="p-primario">Valor dos serviços adicionais: R${{ valorServAdicionais }},00</p>
+                <p class="p-primario">Valor dos serviços adicionais: R${{ valorServAdicionais }},00</p>
                 <p class="p-primario">Valor total da Reserva: R${{ valorTotal }},00</p>
                 <div class="p-primario">
                     
@@ -51,6 +52,7 @@ export default {
             quarto: JSON.parse(localStorage.getItem('reservas'))[0].quarto,
             valorServAdicionais: JSON.parse(localStorage.getItem('reservas'))[0].valorTServicos,
             valorTotal: JSON.parse(localStorage.getItem('reservas'))[0].valorTotal,
+            consumoBar: 0,
             imagens: [
                 {standard: require("@/assets/images/acomodacoes/acomodacoes-standard-1.png")},
                 {luxo: require("@/assets/images/acomodacoes/acomodacoes-luxo-1.png")},
@@ -80,6 +82,12 @@ export default {
             document.querySelector('#totalCarrinho').innerText = this.valorTotal - desconto.toFixed(2)
                 console.log(`desconto: R$ ${desconto}`)
             
+        }
+    },
+    mounted: function(){
+        let consumo = JSON.parse(localStorage.getItem('consumoBar'))[0]
+        for (let i = 0; i < consumo.length; i++){
+            this.consumoBar+=consumo[i].qtdConsumido * consumo[i].valor
         }
     }
 }
