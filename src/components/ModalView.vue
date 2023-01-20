@@ -71,7 +71,7 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js'
-import { ConsumoBar } from '@/assets/js/Consumo'
+import { ConsumoBar, ConsumoQuarto } from '@/assets/js/Consumo'
 
 export default {
     name: "ModalView",
@@ -89,7 +89,8 @@ export default {
             // Cria o objeto reserva
             let reserva = {}
             let servicosAdd = []
-            let consumo = new ConsumoBar()
+            let consumoBar = new ConsumoBar()
+            let consumoQuarto = new ConsumoQuarto()
             reserva.quarto = localStorage.getItem('quarto')
             reserva.checkin = localStorage.getItem('checkin')
             reserva.checkout = localStorage.getItem('checkout')
@@ -101,7 +102,8 @@ export default {
             reserva.inpServicosQtd = servicosAdd
             reserva.valorTServicos = localStorage.getItem('valorTServicos')
             reserva.valorTotal = localStorage.getItem('valorTotal')
-            reserva.consumo = consumo
+            reserva.consumoBar = consumoBar
+            reserva.consumoQuarto = consumoQuarto
 
             // Acrescenta a reserva às reservas no localstorage
             if(localStorage.getItem('reservas')) {
