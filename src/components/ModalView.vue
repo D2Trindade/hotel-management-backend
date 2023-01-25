@@ -56,10 +56,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <router-link to="/minhasreservas">
-                        <button id="confirmarReserva" type="submit" class="d-none btn btn-primary" data-bs-dismiss="modal" @click="addReserva">Confirmar reserva</button>
-                    </router-link>
-                    
+                    <button id="confirmarReserva" type="submit" class="d-none btn btn-primary" data-bs-dismiss="modal" @click="reservar">Confirmar reserva</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                 </div>
                 </div>
@@ -84,6 +81,15 @@ export default {
         tipo: String
     }, 
     methods: {
+        // Verifica a possibilidade de realizar a reserva
+        reservar() {
+            if (localStorage.getItem('login')) {
+                this.addReserva()
+            }
+            else {
+                alert('Para realizar reserva, por favor, faça o login!')
+            }
+        },
         // Cria o objeto reserva e acrescenta a lista de reservas
         addReserva() {
             // Cria o objeto reserva
@@ -101,6 +107,7 @@ export default {
             reserva.inpServicosQtd = servicosAdd
             reserva.valorTServicos = localStorage.getItem('valorTServicos')
             reserva.valorTotal = localStorage.getItem('valorTotal')
+            reserva.user = localStorage.getItem('login')
             reserva.consumo = consumo
 
             // Acrescenta a reserva às reservas no localstorage

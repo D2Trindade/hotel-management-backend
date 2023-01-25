@@ -47,7 +47,12 @@ export default {
             document.querySelector('#logado-usuario').innerText = ''
             document.querySelector('#logado').classList.add('esconder')
             document.querySelector('#cadastro').classList.remove('esconder')
-            document.querySelector(".modalNovoComentario").classList.add ('esconder')
+            document.querySelector('#navMinhasreservas').parentNode.classList.add('d-none')
+            this.$router.push('/')
+
+            if (document.querySelector(".modalNovoComentario") != null) {
+                document.querySelector(".modalNovoComentario").classList.add ('esconder')
+            }
         }
     },
     mounted: function() {
@@ -65,13 +70,14 @@ export default {
                 }
             }
 
-
             document.querySelector('#logado').classList.remove('esconder')
             document.querySelector('#cadastro').classList.add('esconder')
+            document.querySelector('#navMinhasreservas').parentNode.classList.remove('d-none')
         }
         else {
             document.querySelector('#logado').classList.add('esconder')
             document.querySelector('#cadastro').classList.remove('esconder')
+            document.querySelector('#navMinhasreservas').parentNode.classList.add('d-none')
         }
     }
 }

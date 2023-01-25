@@ -8,7 +8,7 @@
       <div class="p-top" >
         <h3 class="h3-primario">Quartos Standard:</h3>
       </div>
-      <div class="acomodacoes acomodacoes--presidencial">
+     <div class="acomodacoes acomodacoes--standard">
         <AcomodacaoCard id="7" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('standard')" />
         <AcomodacaoCard id="8" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('standard')" />
         <AcomodacaoCard id="9" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('standard')" />
@@ -34,7 +34,7 @@
       <div class="p-top">
         <h3 class="h3-primario">Quartos Presidenciais:</h3>
       </div>
-      <div class="acomodacoes acomodacoes--standard">
+      <div class="acomodacoes acomodacoes--presidencial">
         <AcomodacaoCard id="1"  data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('presidencial')" />
         <AcomodacaoCard id="2" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('presidencial')" />
         <AcomodacaoCard id="3" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('presidencial')" />

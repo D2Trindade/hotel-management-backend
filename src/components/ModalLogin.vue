@@ -91,7 +91,7 @@ export default {
             localStorage.setItem('login', cadastroEmail)
             document.querySelector('#logado').classList.remove('esconder')
             document.querySelector('#cadastro').classList.add('esconder')
-            document.querySelector('#logado-usuario').innerText = cadastroUser
+            document.querySelector('#logado-usuario').innerText = `Bem-vindo ${cadastroUser}`
 
         },
         // Limpa os dados preenchidos do cadastro
@@ -110,15 +110,17 @@ export default {
                 localStorage.setItem('login', loginEmail)
                 document.querySelector('#logado').classList.remove('esconder')
                 document.querySelector('#cadastro').classList.add('esconder')
-                document.querySelector(".modalNovoComentario").classList.remove ('esconder')
+                document.querySelector('#navMinhasreservas').parentNode.classList.remove('d-none')
                 document.querySelector('#logado-usuario').innerText = `Bem-vindo ${this.cadastros[valida].nome}`
+                if (document.querySelector(".modalNovoComentario") != null) {
+                    document.querySelector(".modalNovoComentario").classList.remove ('esconder')
+                }
+
             } else {
                 alert ('Cadastro não encontrado!')
             }
             document.querySelector("#loginEmail").value = ''
-            document.querySelector("#loginPass").value = ''        
-
-            console.log(loginEmail, loginPass, valida)
+            document.querySelector("#loginPass").value = ''
         },
         // Valida se o login realizado está na lista de cadastros (email e senha)
         validaLogin(loginEmail, loginPass) {

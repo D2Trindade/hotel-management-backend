@@ -4,7 +4,7 @@
         <div class="collapse navbar-collapse" id="colNav">
             <ul class="navbar-nav">
                 <li class="nav-item" v-for="pg in paginas" :key="pg.id">
-                    <router-link class="nav-link" :to="pg.link">{{pg.nome}}</router-link>
+                    <router-link class="nav-link" :to="pg.link" :id="pg.id">{{pg.nome}}</router-link>
                 </li>
             </ul>
         </div>
@@ -17,11 +17,12 @@ export default {
     data() {
         return {
             paginas: [
-                {id: 1, nome: 'Home', link: '/'},
-                {id: 2, nome: 'Sobre', link: '/sobre'},
-                {id: 3, nome: 'Acomodações', link: '/acomodacoes'},
-                {id: 4, nome: 'Reservas', link: '/reservas'},
-                {id: 5, nome: 'Contato', link: '/contato'},
+                {id: 'navHome', nome: 'Home', link: '/'},
+                {id: 'navSobre', nome: 'Sobre', link: '/sobre'},
+                {id: 'navAcomodacoes', nome: 'Acomodações', link: '/acomodacoes'},
+                {id: 'navReservas', nome: 'Reservas', link: '/reservas'},
+                {id: 'navContato', nome: 'Contato', link: '/contato'},
+                {id: 'navMinhasreservas', nome: 'Minhas Reservas', link: '/minhasreservas'},
             ]
         }
     }

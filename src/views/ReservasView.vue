@@ -171,19 +171,6 @@ export default {
                 } 
             })
             
-            // this.qtdAtual = parseInt(localStorage.getItem("qtdPessoas"))
-            // switch (localStorage.getItem("quarto")) {
-            //     case "luxo":
-            //         localStorage.setItem("valorTotal", (this.quartos[1]["valor"] * this.qtdAtual) + parseInt(localStorage.getItem("valorTServicos")))
-            //         break
-            //     case "presidencial":
-            //         localStorage.setItem("valorTotal", (this.quartos[2]["valor"] * this.qtdAtual) + parseInt(localStorage.getItem("valorTServicos")))
-            //         break;
-            //     default:
-            //         localStorage.setItem("valorTotal", (this.quartos[0]["valor"] * this.qtdAtual) + parseInt(localStorage.getItem("valorTServicos")))
-            //         break;
-            // }
-            // document.querySelector("#bookingValor_modal").innerText = `R$ ${localStorage.getItem("valorTotal")}`
         },
         calculateTotal() {
             // Realiza o cálculo baseado no quarto escolhido e nos serviços adicionais inseridos
@@ -261,9 +248,6 @@ export default {
                             ).innerText = `R$ ${this.quartos[1]["valor"].toFixed(2)}`;
                             document.querySelector("#bookingImg_modal").src = require(
                             "@/assets/images/acomodacoes/acomodacoes-luxo-1.png");
-                            // document.querySelector("#bookingValor_modal").innerText = `R$ ${(
-                            // (this.quartos[1]["valor"] * this.qtdPessoas) + parseInt(localStorage.getItem("valorTServicos"))
-                            // ).toFixed(2)}`;
                             break;
                         case "presidencial":
                             document.querySelector("#modal-quarto p:nth-of-type(1)").innerText =
@@ -273,16 +257,11 @@ export default {
                             ).innerText = `R$ ${this.quartos[2]["valor"].toFixed(2)}`;
                             document.querySelector("#bookingImg_modal").src = require(
                             "@/assets/images/acomodacoes/acomodacoes-standard-1.png");
-                            // document.querySelector("#bookingValor_modal").innerText = `R$ ${(
-                            // (this.quartos[2]["valor"] * this.qtdPessoas) + parseInt(localStorage.getItem("valorTServicos"))
-                            // ).toFixed(2)}`;
                             break;
                         default:
                             document.querySelector("#modal-quarto p:nth-of-type(1)").innerText = this.quartos[0]["descricao"]
                             document.querySelector("#modal-quarto p:nth-of-type(2)").innerText = `R$ ${this.quartos[0]["valor"].toFixed(2)}`
                             document.querySelector("#bookingImg_modal").src = require("@/assets/images/acomodacoes/acomodacoes-presidencial-1.png")
-                            // document.querySelector("#bookingValor_modal").innerText = 
-                            //     `R$ ${((this.quartos[0]["valor"] * this.qtdPessoas) + parseInt(localStorage.getItem("valorTServicos"))).toFixed(2)}`;
                             break;
                         }
 
@@ -364,23 +343,14 @@ export default {
             switch (localStorage.getItem("quarto")) {
                 case "luxo":
                     document.querySelector("#bookingApt").innerText = "luxo";
-                    // document.querySelector("#bookingValor_modal").innerText = `R$ ${(
-                    //     (this.quartos[1]["valor"] * this.qtdPessoas) + parseInt(localStorage.getItem("valorTServicos"))
-                    // ).toFixed(2)}`;
                     document.querySelector("#luxo").checked = true;
                     break;
                 case "presidencial":
                     document.querySelector("#bookingApt").innerText = "presidencial";
-                    // document.querySelector("#bookingValor_modal").innerText = `R$ ${(
-                    //     (this.quartos[2]["valor"] * this.qtdPessoas) + parseInt(localStorage.getItem("valorTServicos"))
-                    // ).toFixed(2)}`;
                     document.querySelector("#presidencial").checked = true;
                     break;
                 default:
                     document.querySelector("#bookingApt").innerText = "Standard";
-                    // document.querySelector("#bookingValor_modal").innerText = `R$ ${(
-                    //     (this.quartos[0]["valor"] * this.qtdPessoas) + parseInt(localStorage.getItem("valorTServicos"))
-                    // ).toFixed(2)}`;
                     document.querySelector("#standard").checked = true;
                     break;
             }
