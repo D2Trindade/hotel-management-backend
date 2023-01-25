@@ -13,6 +13,7 @@
                 <p class="p-primario">Valor dos serviços adicionais: R$ {{ reserva.valorTServicos }},00</p>
                 <p class="p-primario">Valor total do consumo: R$ {{ consumo }},00</p>
                 <p class="p-primario">Valor total da Reserva: R$ {{ reserva.valorTotal }},00</p>
+                <p class="p-primario" id="desconto"></p>
             </div>
     </div>
 
@@ -37,7 +38,8 @@ export default {
         return {
             reservas: [],
             imgQuarto: [],
-            consumo: 0
+            consumo: 0,
+            descontos:[]
         }
     },
     components: {
@@ -48,15 +50,37 @@ export default {
             let cupomDesconto = Math.random().toString(36).substring(2, 10)
             let codigo = document.querySelector('#codigoCupom')
             codigo.innerText = cupomDesconto
+
             console.log(cupomDesconto)
-            
+        },
+        gerarDesconto(){
+            this.gerarCupom()
+            let valorComDesconto = 0
+            let reservas = JSON.parse(localStorage.getItem('reservas'))
+            for (let i = 0; i < reservas.length; i++) {
+                // Será aplicado o valor do desconto em cada reserva e guardado os valores no Array descontos
+                let desconto = reservas[i].valorTotal * .1
+                valorComDesconto = reservas[i].valorTotal - desconto
+                this.descontos.push(valorComDesconto)
+            }
         },
         aplicarCupom(){
-            this.gerarCupom()
-            let desconto = this.valorTotal * .1
-            document.querySelector('#totalCarrinho').innerText = this.valorTotal - desconto.toFixed(2)
-                console.log(`desconto: R$ ${desconto}`)
+            let totalCarrinho = document.querySelector('#totalCarrinho')
+            let valorDescontado = 0
+            this.gerarDesconto()
+            if(this.cupomDesconto === false){
+                alert('O cupom só pode ser usado uma vez!')
+            }else{
+                for (let i = 0; i < this.descontos.length; i++) {
+                    //soma os descontos e devolve o valor total
+                    valorDescontado += this.descontos[i]
+                    totalCarrinho.innerText = `${valorDescontado}`
+                }
+                this.cupomDesconto = false 
+            }
+                    
         }
+
     },
     mounted: function() {
         // Recupera reservas e o login do localstorage
@@ -79,13 +103,15 @@ export default {
                 this.imgQuarto.push(quarto)
 
                 // Calcula consumo total
-                let consumo = 0
-                for (var j=0; j < objReservas[i].consumo.length; j++) {
-                    consumo += objReservas[i].consumo[j].valor * objReservas[i].consumo[j].qtdConsumido 
-                }
-                console.log(consumo)
+                // let consumo = 0
+                // for (var j=0; j < objReservas[i].consumo.length; j++) {
+                //     consumo += objReservas[i].consumo[j].valor * objReservas[i].consumo[j].qtdConsumido 
+                // }
+                // console.log(consumo)
+                
             }        
         }
+
     }
 }
 </script>

@@ -14,7 +14,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 #card1 {
     background-image: url(@/assets/images/acomodacoes/acomodacoes-presidencial-1.png);
     background-size: cover;
