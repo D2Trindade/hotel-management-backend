@@ -30,3 +30,15 @@ export class ConsumoBar extends Consumo {
         this.produtos.push({cod: '007', nome: 'Refrigerante', valor: 4, qtdConsumido: 0})
     }
 }
+
+export class ConsumoQuarto extends Consumo {
+    constructor () {
+        super()
+        this.produtos.push({cod: '101', nome: 'Água', valor: 5, qtdConsumido: 0})
+        this.produtos.push({cod: '102', nome: 'Cerveja', valor: 7, qtdConsumido: 0})
+        this.produtos.push({cod: '103', nome: 'Refrigerante', valor: 6, qtdConsumido: 0})
+        this.produtos.push({cod: '201', nome: 'Barra de Chocolate', valor: 15, qtdConsumido: 0})
+        this.produtos.push({cod: '202', nome: 'Batata Chips', valor: 12, qtdConsumido: 0})
+        this.produtos.push({cod: '203', nome: 'Amendoim', valor: 8, qtdConsumido: 0})
+    }
+}

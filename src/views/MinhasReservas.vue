@@ -11,6 +11,7 @@
                 <h4 class="h3-primario"> Tipo de quarto: {{ reserva.quarto.toUpperCase() }}</h4>
                 <p class="p-primario">Quantidade de pessoas: {{ reserva.qtdPessoas }} </p>
                 <p class="p-primario">Valor dos serviços adicionais: R$ {{ reserva.valorTServicos }},00</p>
+                <p class="p-primario">Valor total do consumo: R$ {{ consumo }},00</p>
                 <p class="p-primario">Valor total da Reserva: R$ {{ reserva.valorTotal }},00</p>
             </div>
     </div>
@@ -35,7 +36,8 @@ export default {
     data() {
         return {
             reservas: [],
-            imgQuarto: []
+            imgQuarto: [],
+            consumo: 0
         }
     },
     components: {
@@ -75,6 +77,13 @@ export default {
                     quarto = '1'
                 }
                 this.imgQuarto.push(quarto)
+
+                // Calcula consumo total
+                let consumo = 0
+                for (var j=0; j < objReservas[i].consumo.length; j++) {
+                    consumo += objReservas[i].consumo[j].valor * objReservas[i].consumo[j].qtdConsumido 
+                }
+                console.log(consumo)
             }        
         }
     }
