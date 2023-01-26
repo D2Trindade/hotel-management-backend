@@ -1,7 +1,8 @@
 <template>
   <main>
     <section class="section-pd">
-      <div class="home--banner" id="homeBanner"></div>
+
+      <BannerVue/>
       
       <article>
         <div class="p-top">
@@ -67,6 +68,7 @@ import AcomodacaoCard from '@/components/AcomodacaoCard.vue'
 import ImagesCarousel from '@/components/ImagesCarousel.vue'
 import InputDefault from '@/components/InputDefault.vue'
 import ButtonSubmit from '@/components/ButtonSubmit.vue'
+import BannerVue from '@/components/BannerVue.vue'
 
 export default {
   name: 'HomeView',
@@ -74,7 +76,8 @@ export default {
     ImagesCarousel,
     InputDefault,
     ButtonSubmit,
-    AcomodacaoCard
+    AcomodacaoCard,
+    BannerVue,
   },
   methods: {
     getImg(url) {
@@ -368,6 +371,17 @@ export default {
 
 .acomodacoes--card-titulo {
   position: top;
+}
+
+/*---------------
+* HOME
+*---------------
+*/
+.home--banner {
+  background-image: url(@/assets/images/background/background-8.png);
+  background-size: 100%;
+  height: 30vw;
+  background-repeat: no-repeat;
 }
 
 @media (max-width: 1170px) {
