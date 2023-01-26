@@ -105,6 +105,17 @@ export default {
             let loginEmail = document.querySelector("#loginEmail").value
             let loginPass = document.querySelector("#loginPass").value
             let valida = this.validaLogin (loginEmail, loginPass)
+            loginEmail = loginEmail.trim().replace(/"|'|/gi,'')
+            loginPass = loginPass.trim().replace(/"|'/gi,'')
+           
+            if (!loginEmail) {
+                alert('Campo de email vazio!')
+                return
+            }
+            if (!loginPass) {
+                alert('Campo de senha vazio!')
+                return
+            }
 
             if (valida != -1) {
                 localStorage.setItem('login', loginEmail)
@@ -112,15 +123,12 @@ export default {
                 document.querySelector('#cadastro').classList.add('esconder')
                 document.querySelector('#navMinhasreservas').parentNode.classList.remove('d-none')
                 document.querySelector('#logado-usuario').innerText = `Bem-vindo ${this.cadastros[valida].nome}`
-                if (document.querySelector(".modalNovoComentario") != null) {
-                    document.querySelector(".modalNovoComentario").classList.remove ('esconder')
-                }
-
             } else {
                 alert ('Cadastro não encontrado!')
             }
             document.querySelector("#loginEmail").value = ''
-            document.querySelector("#loginPass").value = ''
+            document.querySelector("#loginPass").value = ''  
+            window.location = "/"      
         },
         // Valida se o login realizado está na lista de cadastros (email e senha)
         validaLogin(loginEmail, loginPass) {
