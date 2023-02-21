@@ -1,0 +1,86 @@
+>npm install nodemon --save-dev
+Ele fica ouvindo o servidor, igual ao saas pra não ter que ficar dando nodenomeDoArquivo sempre que fizer uma alteração e é bom para acompanhar erros tbm.
+
+Já foi adicionado o script pra rodar no nodemon>npm run start
+
+>npm install sequelize sequelize-cli path
+
+>npm install mysql
+
+
+
+__________________SEQUELIZE
+
+//////Para iniciar o projeto
+npx sequelize-cli init
+
+Cria sozinho as pastas config, migrations, models e seeders
+
+Arquivo .sequelizerc foi criado manualmente, como previso na documentação do sequelize
+
+No arquivo é colocado o path pra resolver os caminhos e o sequelize conseguir ouvir as mudanças e fazer as importações para os arquivos certos
+
+
+
+Para criar uma tabela (uma model), uma classe:
+npx sequelize-cli model:generate --name Pessoas --attributes nome:string,ativo:boolean,email:string,role:string
+
+O sistema gera sozinho o ID e os atributos createdAt updatedAt que vão gerenciar versões dos dados e ao rodar o comando ele cria a model correspondente e a migration correspondente automaticamente
+IMPORTANTE:
+É bom olhar na documentação do Sequeliza os tipos de dados, por exe. ao inserir um atributo como data_inicio:date (geraria por exemplo um dado que gravaria data e hora) enquanto data_inicio:dateonly (geraria apenas um dado que gravaria apenas a data)
+https://sequelize.org/docs/v6/core-concepts/model-basics/#strings
+
+
+Para migrar os dados, a tebela para o banco com os atributos definidos:
+>npx sequelize-cli db:migrate
+Como esse comando gera as migrations e elas são enumeradas a partir do momento que eu criar tabelas que se relacionam eu vou criar todas as tabelas por ordem de dependência e só depois de criadas as tabelas que dependem de dados entre sí é que eu vou rodar o comando de migrations, porque assim as migrations vão seguir a ordem que precisam e as relações são colocadas manualmente.
+
+Para popular o banco:
+>seeders
+Recurso do sequelize que gera um arquivo para popular o banco, vem comentado o padrão para adicionar os dados com um up(pra adicionar em lotes) e um down(pra deletar em lote)
+comando pra gerar o arquivo:
+>npx sequelize-cli seed:generate --name demo-pessoa
+
+depois de adicionados os dados no arquivo na pasta seeders rodar o comando pra mandar os dados pro banco
+>npx sequelize-cli db:seed:all
+
+
+Precisando voltar o banco a um estado anterior rodar o comando
+>npx sequelize-cli db:migrate:undo
+Só reverte o último estado, mas pode ir repetindo o comando até chegar no estado que quer 
+
+ou
+>db:migrate:undo --name [data-hora]-create-[nome-da-tabela].js
+
+Para limpar os dados dos seeders, que geralmente são dados pra popular e pra testes:
+>npx sequelize db:seed:undo
+
+Os arquivos da pasta controllers não tem comando pra gerar automático pra gente
+
+
+Foi criada uma pasta e nomeada de routes
+O index.js é o ponto de entrada das rotas
+
+Depois de terrminar a primeira tabela é importante levar em consideração as relações das próximas tabelas, como o sequeleize gera o arquivo de migrations com um numero ele usa essa numeração para se ambientar, então é decessário criar na ordem certa para ele só adicionar uma tabela com os dados dependentes de outra já criada.
+
+IMPORTANTE:
+Para inserir as associações:
+https://sequelize.org/docs/v6/core-concepts/assocs/
+
+As associações são realizadas nas models, e o sequelize deixa até o código comentado:
+// define association here
+para a gente incluir de acordo com as regras de negócio.
+ex.
+A.hasMany(B)
+
+Depois de criar as outras tabelas e definir suas relações nas models e referenciar os atributos nas migrations basta rodar o comando para criar as migrations, lembrando que também tem que ser em ordem, as migratiosn tem a numeração e essa numeração é importante.
+npx sequelize-cli db:migrate
+que vai gerar todas as migrações de uma vez
+
+Como adicionar uma coluna em uma tabela já gerada com sequelize:
+adicionar um arquivo na pasta de migrations, pois assim fica documentado e versionado, podendo ser revertido.
+Adicionar o arquivo com data e hora (precisa ser superior a data e hora dos arquivos de create)
+ e identificar com addcolumn-nomedaclasse
+Depois de criado, só alterar o método (pode cpiar e colar o conteúdo de uma migrations de create e alterar o método e adicionar o nome da coluta tbm)
+Antes disso, não esquecer de adicionar ```paranoid: true,``` em todos os arquivos de models exeto o index.js
+
