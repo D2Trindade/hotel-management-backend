@@ -84,3 +84,32 @@ Adicionar o arquivo com data e hora (precisa ser superior a data e hora dos arqu
 Depois de criado, só alterar o método (pode cpiar e colar o conteúdo de uma migrations de create e alterar o método e adicionar o nome da coluta tbm)
 Antes disso, não esquecer de adicionar ```paranoid: true,``` em todos os arquivos de models exeto o index.js
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+Para utilizar o banco de dados já criado
+
+1. Rodar os comandos:
+
+> npm install nodemon --save-dev
+> npm install sequelize sequelize-cli path
+
+(caso não tiver MySql instalado) 
+> npm install mysql
+
+
+2. Em seu DB Localhost criado nas aulas, acrescentar o seguinte usuário:
+
+> CREATE USER 'kelvya'@'localhost' IDENTIFIED BY 'DB**db321123';
+
+
+3. Criar o seguinte Schema:
+
+> CREATE SCHEMA `sequelize_hotel` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+
+4. Popular o banco
+
+> npx sequelize-cli db:seed:all
+
+Após puxar os dados do repositório backend, basta aplicar os comandos acima
+IMPORTANTE!
+Os comandos 'sequelize' e 'npm run start' precisam ser rodados dentro da pasta api 
+/hotel-management-backend/bancos/mysql/api
