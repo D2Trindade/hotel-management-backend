@@ -4,11 +4,6 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Acomodacoes extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       Acomodacoes.hasMany(models.Quartos, {foreignKey: 'acomodacao_id'})
     }
@@ -19,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     preco: DataTypes.DECIMAL
   }, {
     sequelize,
+    paranoid: true,
     modelName: 'Acomodacoes',
   });
   return Acomodacoes;

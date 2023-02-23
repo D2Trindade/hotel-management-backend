@@ -6,6 +6,7 @@ const router = Router()
 router.get('/pessoas', PessoaController.listarPessoas)
 router.get('/pessoas/:id', PessoaController.listarPessoaPorID)
 router.post('/pessoas', PessoaController.cadastrarPessoa)
+router.post('/pessoas/:id/restaura', PessoaController.restaurarPessoa)
 router.put('/pessoas/:id', PessoaController.atualizarPessoa)
 router.delete('/pessoas/:id', PessoaController.excluirPessoa)
 

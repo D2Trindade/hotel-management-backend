@@ -62,6 +62,16 @@ class AcomodacaoController {
         }
     }
 
+    static async restaurarAcomodacao(req, res){
+        const { id } = req.params
+        try{
+            await database.Acomodacoes.restore({where: { id: Number(id)}})
+            return res.status(200).json({message: `Acomodação de id: ${id} restaurada.`})
+        }catch(error){
+            return res.status(500).json(error.message)
+        }
+    }
+
     // Rotas para os quartos
     static async listarQuartoPorAcomodacao(req, res){
         const { acomodacaoID } = req.params
@@ -122,6 +132,16 @@ class AcomodacaoController {
             await database.Quartos.destroy({where: {numero_quarto: Number(quartoID)}})
             return res.status(200).json({message: `Quarto de número: ${quartoID} deletado com sucesso!`})
         } catch (error) {
+            return res.status(500).json(error.message)
+        }
+    }
+
+    static async restaurarQuarto(req, res){
+        const { id } = req.params
+        try{
+            await database.Quartos.restore({where: { id: Number(id)}})
+            return res.status(200).json({message: `Quarto de id: ${id} restaurado.`})
+        }catch(error){
             return res.status(500).json(error.message)
         }
     }
