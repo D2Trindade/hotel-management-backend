@@ -2,6 +2,7 @@ const { json } = require('body-parser')
 const database = require('../models')
 
 class PessoaController {
+    //Rotas para pessoas (todas sem filtro)
     static async listarPessoas(req, res){
         try {
             const todasAsPessoas = await database.Pessoas.findAll()
@@ -57,7 +58,7 @@ class PessoaController {
         } catch (error) {
             return res.status(500).json(error.message)
         }
-    }
+    }  
 }
 
 module.exports = PessoaController
