@@ -31,6 +31,11 @@ const routes = [
     path: '/minhasreservas',
     name: 'minhasreservas',
     component: () => import('../views/MinhasReservas.vue')
+  },
+  {
+    path: '/adm',
+    name: 'adm',
+    component: () => import('../views/Adm/AdmLogin.vue')
   }
 ]
 

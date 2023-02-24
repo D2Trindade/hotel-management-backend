@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     paranoid: true,
+    // defaultScope: {where: {status: false}}, // Só vai trazer nas consultas os quartos que estão disponíveis
     modelName: 'Quartos',
   });
   return Quartos;

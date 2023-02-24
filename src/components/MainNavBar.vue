@@ -23,6 +23,7 @@ export default {
                 {id: 'navReservas', nome: 'Reservas', link: '/reservas'},
                 {id: 'navContato', nome: 'Contato', link: '/contato'},
                 {id: 'navMinhasreservas', nome: 'Minhas Reservas', link: '/minhasreservas'},
+                {id: 'navAdm', nome: 'Área administrativa', link: '/adm'},
             ]
         }
     }

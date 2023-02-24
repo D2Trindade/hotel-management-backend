@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     paranoid: true,
+    // defaultScope: {where: {deletedAt: Null}}, // Só vai trazer nas consultas os tipos de acomodações que estão ativas
     modelName: 'Acomodacoes',
   });
   return Acomodacoes;
