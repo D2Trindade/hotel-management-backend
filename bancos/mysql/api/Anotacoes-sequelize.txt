@@ -105,7 +105,11 @@ Para utilizar o banco de dados já criado
 
 > CREATE SCHEMA `sequelize_hotel` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 
-4. Popular o banco
+4. Criar as tabelas
+> npx sequelize-cli db:migrate
+
+
+5. Popular o banco
 
 > npx sequelize-cli db:seed:all
 

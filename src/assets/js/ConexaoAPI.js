@@ -1,6 +1,6 @@
 const baseAPI = "http://localhost:3000"
-async function getPessoas() {     
-    let res = fetch(`${baseAPI}/pessoas`, { method: "GET" })
+async function getAPI(route) {     
+    let res = fetch(`${baseAPI}${route}`, { method: "GET" })
                 .then(response => {
                     if(response.ok) {
                         return response.json()
@@ -14,4 +14,4 @@ async function getPessoas() {
                 })
     return res;
 }
-module.exports = { getPessoas }
+module.exports = { getAPI }
