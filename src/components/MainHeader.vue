@@ -1,5 +1,5 @@
 <template>
-    <header class="header--container container-fluid text-end m-0 p-1">
+    <header class="header--container container-fluid text-end m-0 p-1" v-if="!logged">
         <div class="text-center">
             <span class="p-4" id="logado-usuario"></span>
         </div>
@@ -24,7 +24,25 @@
             </div>
         </div>
     </header>
-    <ModalLogin />
+    <ModalLogin v-if="!logged" />
+    <header class="header--container container-fluid text-end m-0 p-1" v-if="logged">
+        <div class="text-center">
+            <span class="p-4" id="logadoAdm-usuario">Seja bem-vindo!</span>
+        </div>
+        <div class="container" id="logadoAdm">
+            <button class="btn btn-secondary text-bg-secondary col p-1 " @click="sairAdm">
+                Sair
+            </button>
+        </div>
+        <div class="d-flex align-items-center">
+            <router-link to="/" class="header--logo" title="Grand Hoyal Hotel"></router-link>
+            <div class="header--container2">
+                <p class="header--container2-container alinhamento m-1 p-1">
+                    Você é Grand, você é Royal!
+                </p>
+            </div>
+        </div>
+    </header>
 </template>
 
 <script>
@@ -53,6 +71,10 @@ export default {
             if (document.querySelector(".modalNovoComentario") != null) {
                 document.querySelector(".modalNovoComentario").classList.add ('esconder')
             }
+        },
+        sairAdm() {
+            localStorage.removeItem('loginFunc')
+            this.$router.push('/')
         }
     },
     mounted: function() {
@@ -72,12 +94,26 @@ export default {
 
             document.querySelector('#logado').classList.remove('esconder')
             document.querySelector('#cadastro').classList.add('esconder')
-            document.querySelector('#navMinhasreservas').parentNode.classList.remove('d-none')
+            if (document.querySelector('#navMinhasreservas')) {
+                document.querySelector('#navMinhasreservas').parentNode.classList.remove('d-none')
+            }
         }
-        else {
+        else if (!localStorage.getItem('loginFunc')) {
             document.querySelector('#logado').classList.add('esconder')
             document.querySelector('#cadastro').classList.remove('esconder')
-            document.querySelector('#navMinhasreservas').parentNode.classList.add('d-none')
+            if (document.querySelector('#navMinhasreservas')) {
+                document.querySelector('#navMinhasreservas').parentNode.classList.add('d-none')
+            }
+        }
+    },
+    computed: {
+        logged() {
+            if (document.querySelector('#logadoAdm') && !localStorage.getItem('loginFunc')) {
+                document.querySelector('#logadoAdm').classList.add('esconder')
+            }
+
+            if(this.$route.name != null) return this.$route.name.includes('adm')
+            else return false
         }
     }
 }

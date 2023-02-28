@@ -48,7 +48,7 @@
               <p class="p-primario">Se inscreva na nossa newsletter e receba diariamente notícias e dicas de lugares para se
               hospedar e promoções:</p>
             </label>
-            <InputDefault id="newsletter" placeholder="Digite seu email aqui" tipo="email"/>
+            <InputDefault id="newsletter" placeholder="Digite seu email aqui" tipo="email" tamanho="50"/>
             <ButtonSubmit tipo="Enviar" class="col btn-terceario" />
           </div>
         </div>

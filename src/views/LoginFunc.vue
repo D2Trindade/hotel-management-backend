@@ -52,7 +52,6 @@ export default {
             nome: pessoas[i].nome,
             email: pessoas[i].email
           }
-          console.log(loginFunc)
           localStorage.setItem('loginFunc', JSON.stringify(loginFunc))
           this.$router.push('/admHome')
           return

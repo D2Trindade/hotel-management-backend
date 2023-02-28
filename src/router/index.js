@@ -33,14 +33,19 @@ const routes = [
     component: () => import('../views/MinhasReservas.vue')
   },
   {
-    path: '/adm',
-    name: 'adm',
-    component: () => import('../views/Adm/AdmLogin.vue')
+    path: '/loginfunc',
+    name: 'loginfunc',
+    component: () => import('../views/LoginFunc.vue')
   },
   {
     path: '/admHome',
     name: 'admHome',
     component: () => import('../views/Adm/AdmHome.vue')
+  },
+  {
+    path: '/admUsers',
+    name: 'admUsers',
+    component: () => import('../views/Adm/AdmUsers.vue')
   }
 ]
 
