@@ -12,7 +12,8 @@ module.exports = {
         email: 'ana@ana.com',
         role: 'usuario',
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        password: 'j45164ed5454f5465546f'
       },
       {
         nome: 'Marcos Cintra',
@@ -20,7 +21,8 @@ module.exports = {
 				email: 'marcos@marcos.com',
 				role: 'usuario',
 				createdAt: new Date(),
-				updatedAt: new Date()
+				updatedAt: new Date(),
+        password: 'j45164ed454f5465546g'
       },
       {
         nome: 'Felipe Cardoso',
@@ -28,7 +30,8 @@ module.exports = {
 				email: 'felipe@felipe.com',
 				role: 'usuario',
 				createdAt: new Date(),
-				updatedAt: new Date()
+				updatedAt: new Date(),
+        password: 'j45164ed5454f5465546h'
       },
       {
         nome: 'Sandra Gomes',
@@ -36,7 +39,8 @@ module.exports = {
 				email: 'sandra@sandra.com',
 				role: 'usuario',
 				createdAt: new Date(),
-				updatedAt: new Date()
+				updatedAt: new Date(),
+        password: 'j45164ed5454f5465546i'
       },
       {
         nome: 'Paula Morais',
@@ -44,7 +48,8 @@ module.exports = {
 				email: 'paula@paula.com',
 				role: 'usuario',
 				createdAt: new Date(),
-				updatedAt: new Date()
+				updatedAt: new Date(),
+        password: 'j45164ed5454f5465546j'
       },
       {
         nome: 'Sergio Lopes',
@@ -52,7 +57,35 @@ module.exports = {
 				email: 'sergio@sergio.com',
 				role: 'usuario',
 				createdAt: new Date(),
-				updatedAt: new Date()
+				updatedAt: new Date(),
+        password: 'j45164ed5454f5465546k'
+      },
+      {
+        nome: 'Aline Magalhães',
+				ativo: true,
+				email: 'alineM@granroyalhotel.com',
+				role: 'funcionario',
+				createdAt: new Date(),
+				updatedAt: new Date(),
+        password: 'j45164ed5454f5465546l'
+      },
+      {
+        nome: 'Paulo Queiroz',
+				ativo: true,
+				email: 'pauloQ@granroyalhotel.com',
+				role: 'funcionario',
+				createdAt: new Date(),
+				updatedAt: new Date(),
+        password: 'j45164ed5454f5465546m'
+      },
+      {
+        nome: 'Arnaldo Venâncio',
+				ativo: true,
+				email: 'arnaldoV@granroyalhotel.com',
+				role: 'funcionario',
+				createdAt: new Date(),
+				updatedAt: new Date(),
+        password: 'j45164ed5454f5465546n'
       }
     ], {});
   },
