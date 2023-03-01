@@ -3,74 +3,7 @@ const { json } = require('body-parser')
 const { parse } = require('path')
 const database = require('../models')
 
-class AcomodacaoController {
-    // Rotas para acomodações
-    static async listarAcomodacoes(req, res){
-        try {
-            const todasAsAcomodacoes = await database.Acomodacoes.findAll()
-            return res.status(200).json(todasAsAcomodacoes)
-        } catch (error){
-            return res.status(500).json(error.message)
-        }
-    }
-
-    static async listarAcomodacaoPorID(req, res){
-        const { id } = req.params
-        try {
-            const acomodacaoPorID = await database.Acomodacoes.findOne(
-                {
-                    where: {
-                        id: Number(id)
-                    }
-                }
-            )
-            return res.status(200).json(acomodacaoPorID)
-        } catch (error){
-            return res.status(500).json(error.message)
-        }
-    }
-
-    static async cadastrarAcomodacao(req, res){
-        const novaAcomodacao = req.body
-        try {
-            const novaAcomodacaoCriada = await database.Acomodacoes.create(novaAcomodacao)
-            return res.status(200).json(novaAcomodacaoCriada)
-        }catch (error){
-            return res.status(500).json(error.message)
-        }
-    }
-
-    static async atualizarAcomodacao(req, res){
-        const { id } = req.params
-        const novasInfos = req.body
-        try {
-            await database.Acomodacoes.update(novasInfos, { where: { id: Number(id) }})
-            const acomodacaoAtualizada = await database.Acomodacoes.findOne( { where: { id: Number(id) }})
-            return res.status(200).json(acomodacaoAtualizada)
-        } catch (error) {
-            return res.status(500).json(error.message)
-        }
-    }
-
-    static async excluirAcomodacao(req, res){
-        const { id } = req.params
-        try {
-            await database.Acomodacoes.destroy( { where: { id: Number(id) }})
-            return res.status(200).json({ message: `Tipo de acomodação com código: ${id} excluído com sucesso!`})
-        } catch (error) {
-            return res.status(500).json(error.message)
-        }
-    }
-
-    static async restaurarAcomodacao(req, res){
-        const { id } = req.params
-        try{
-            await database.Acomodacoes.restore({where: { id: Number(id)}})
-            return res.status(200).json({message: `Acomodação de id: ${id} restaurada.`})
-        }catch(error){
-            return res.status(500).json(error.message)
-        }
-    }
+class QuartoController {
 
     // Rotas para os quartos
     static async listarQuartoPorAcomodacao(req, res){
@@ -147,4 +80,4 @@ class AcomodacaoController {
     }
 }
 
-module.exports = AcomodacaoController
+module.exports = QuartoController
