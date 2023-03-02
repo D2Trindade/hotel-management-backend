@@ -3,6 +3,9 @@ const pessoas = require('./pessoasRoute')
 const acomodacoes = require('./acomodacoesRoute')
 const quartos = require('./quartosRoute')
 const servicos = require('./servicosAdicionaisRoute')
+const servicosReservados = require('./servicosAdicionaisReservadosRoute')
+const servicosporPessoas = require('./servicosPorPessoasRoute')
+const reservas = require('./reservasRoute')
 
 module.exports = app => {
     app.use(bodyParser.json())
@@ -10,5 +13,8 @@ module.exports = app => {
     app.use(acomodacoes)
     app.use(quartos)
     app.use(servicos)
+    app.use(servicosReservados)
+    app.use(servicosporPessoas)
+    app.use(reservas)
     app.get('/', (req, res) => res.send('Olá!'))
 }
