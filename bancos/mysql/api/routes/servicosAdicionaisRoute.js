@@ -4,11 +4,11 @@ const ServicoAdicionalController = require('../controllers/ServicoAdicionalContr
 const router = Router()
 
 
-router.get('/servicos', ServicoAdicionalController.listarServicosAdicionais)
-router.get('/servicos/:id', ServicoAdicionalController.listarServicoAdicionalPorID)
-router.post('/servicos', ServicoAdicionalController.cadastrarServicosAdicionais)
-router.post('/servicos/:id/restaura', ServicoAdicionalController.restaurarServicoAdicional)
-router.put('/servicos/:id', ServicoAdicionalController.atualizarServicosAdicionais)
-router.delete('/servicos/:id', ServicoAdicionalController.excluirServicoAdicional)
+router.get('/servicos', ServicoAdicionalController.listarServicos)
+router.get('/servicos/:id', ServicoAdicionalController.listarServicoPorID)
+router.post('/servicos', ServicoAdicionalController.cadastrarServico)
+router.post('/servicos/:id/restaura', ServicoAdicionalController.restaurarServico)
+router.put('/servicos/:id', ServicoAdicionalController.atualizarServico)
+router.delete('/servicos/:id', ServicoAdicionalController.excluirServico)
 
 module.exports = router

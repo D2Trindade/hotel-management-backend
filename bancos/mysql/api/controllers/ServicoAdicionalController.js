@@ -4,7 +4,7 @@ const database = require('../models')
 
 class ServicoAdicionalController {
     // Rotas para acomodações
-    static async listarServicosAdicionais(req, res){
+    static async listarServicos(req, res){
         try {
             const todosServicos = await database.ServicosAdicionais.findAll()
             return res.status(200).json(todosServicos)
@@ -13,7 +13,7 @@ class ServicoAdicionalController {
         }
     }
 
-    static async listarServicoAdicionalPorID(req, res){
+    static async listarServicoPorID(req, res){
         const { id } = req.params
         try {
             const servicoAdicionalPorID = await database.ServicosAdicionais.findOne(
@@ -29,7 +29,7 @@ class ServicoAdicionalController {
         }
     }
 
-    static async cadastrarServicosAdicionais(req, res){
+    static async cadastrarServico(req, res){
         const novoServicoAdicional = req.body
         try {
             const novoServicoAdicionalCriado = await database.ServicosAdicionais.create(novoServicoAdicional)
@@ -39,7 +39,7 @@ class ServicoAdicionalController {
         }
     }
 
-    static async atualizarServicosAdicionais(req, res){
+    static async atualizarServico(req, res){
         const { id } = req.params
         const novasInfos = req.body
         try {
@@ -51,7 +51,7 @@ class ServicoAdicionalController {
         }
     }
 
-    static async excluirServicoAdicional(req, res){
+    static async excluirServico(req, res){
         const { id } = req.params
         try {
             await database.ServicosAdicionais.destroy( { where: { id: Number(id) }})
@@ -61,7 +61,7 @@ class ServicoAdicionalController {
         }
     }
 
-    static async restaurarServicoAdicional(req, res){
+    static async restaurarServico(req, res){
         const { id } = req.params
         try{
             await database.ServicosAdicionais.restore({where: { id: Number(id)}})
