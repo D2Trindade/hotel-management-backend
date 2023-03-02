@@ -32,6 +32,14 @@ router.put('/usuarios/:id', PessoaController.atualizarUsuario)
 router.delete('/usuarios/:id', PessoaController.excluirUsuario)
 
 
+//Rotas apenas para admin da tabela Pessoas
+router.get('/usuarios', PessoaController.listarAdmins)
+router.get('/usuarios/:id', PessoaController.listarUsuarioPorID)
+router.post('/usuarios', PessoaController.cadastrarUsuario)
+// router.post('/usuarios/:id/restaura', PessoaController.restaurarUsuario)
+router.put('/usuarios/:id', PessoaController.atualizarUsuario)
+router.delete('/usuarios/:id', PessoaController.excluirUsuario)
+
 
 //Rotas apenas para hospedes da tabela Pessoas
 router.get('/hospedes', PessoaController.listarHospedes)

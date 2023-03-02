@@ -6,7 +6,7 @@ const database = require('../models')
 class QuartoController {
 
     // Rotas para os quartos
-    static async listarQuartoPorAcomodacao(req, res){
+    static async listarQuartos(req, res){
         const { acomodacaoID } = req.params
         try {
             const todosQuartos = await database.Quartos.findAll({ 
@@ -59,11 +59,11 @@ class QuartoController {
         }
     }
 
-    static async apagarQuarto(req, res){
+    static async excluirQuarto(req, res){
         const { acomodacaoID, quartoID} = req.params
         try {
             await database.Quartos.destroy({where: {numero_quarto: Number(quartoID)}})
-            return res.status(200).json({message: `Quarto de número: ${quartoID} deletado com sucesso!`})
+            return res.status(200).json({message: `Quarto de número: ${quartoID} excluído com sucesso!`})
         } catch (error) {
             return res.status(500).json(error.message)
         }

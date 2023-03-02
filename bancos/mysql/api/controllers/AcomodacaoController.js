@@ -4,11 +4,12 @@ const { parse } = require('path')
 const database = require('../models')
 
 class AcomodacaoController {
+
     // Rotas para acomodações
     static async listarAcomodacoes(req, res){
         try {
-            const todasAsAcomodacoes = await database.Acomodacoes.findAll()
-            return res.status(200).json(todasAsAcomodacoes)
+            const todasAcomodacoes = await database.Acomodacoes.findAll()
+            return res.status(200).json(todasAcomodacoes)
         } catch (error){
             return res.status(500).json(error.message)
         }
@@ -56,7 +57,7 @@ class AcomodacaoController {
         const { id } = req.params
         try {
             await database.Acomodacoes.destroy( { where: { id: Number(id) }})
-            return res.status(200).json({ message: `Tipo de acomodação com código: ${id} excluído com sucesso!`})
+            return res.status(200).json({ message: `Tipo de acomodação com código: ${id} excluído(a) com sucesso!`})
         } catch (error) {
             return res.status(500).json(error.message)
         }
@@ -66,12 +67,13 @@ class AcomodacaoController {
         const { id } = req.params
         try{
             await database.Acomodacoes.restore({where: { id: Number(id)}})
-            return res.status(200).json({message: `Acomodação de id: ${id} restaurada.`})
+            return res.status(200).json({message: `Tipo de acomodação com código: ${id} restaurado(a) com sucesso!.`})
         }catch(error){
             return res.status(500).json(error.message)
         }
     }
 
+    
     // Rotas para os quartos
     static async listarQuartoPorAcomodacao(req, res){
         const { acomodacaoID } = req.params
@@ -126,11 +128,11 @@ class AcomodacaoController {
         }
     }
 
-    static async apagarQuarto(req, res){
+    static async excluirQuarto(req, res){
         const { acomodacaoID, quartoID} = req.params
         try {
             await database.Quartos.destroy({where: {numero_quarto: Number(quartoID)}})
-            return res.status(200).json({message: `Quarto de número: ${quartoID} deletado com sucesso!`})
+            return res.status(200).json({message: `Quarto de número: ${quartoID} excluído com sucesso!`})
         } catch (error) {
             return res.status(500).json(error.message)
         }

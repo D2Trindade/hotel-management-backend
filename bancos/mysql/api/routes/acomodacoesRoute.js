@@ -15,6 +15,6 @@ router.delete('/acomodacoes/:id', AcomodacaoController.excluirAcomodacao)
 // router.post('/acomodacoes/:acomodacaoID/quartos', AcomodacaoController.adicionarQuarto)
 // router.post('/acomodacoes/:acomodacaoID/quartos/:id', AcomodacaoController.restaurarQuarto)
 // router.put('/acomodacoes/:acomodacaoID/quartos/:quartoID', AcomodacaoController.atualizarQuarto)
-// router.delete('/acomodacoes/:acomodacaoID/quartos/:quartoID', AcomodacaoController.apagarQuarto)
+// router.delete('/acomodacoes/:acomodacaoID/quartos/:quartoID', AcomodacaoController.excluirQuarto)
 
 module.exports = router

@@ -154,6 +154,84 @@ class PessoaController {
     }
 
 
+    ///////////////////////////////////////////////////////////////
+    //Métodos apenas para a regra funcionarios na tabela Pessoas
+    static async listarAdmins(req, res){
+        // const { role } = req.params
+        try {
+            const todosAdmins = await database.Pessoas.findAll(
+                {
+                    where: {
+                        role: String('admin')
+                    }
+                }
+            )
+            return res.status(200).json(todosAdmins)
+        } catch (error){
+            return res.status(500).json(error.message)
+        }
+    }
+
+    static async listarAdminPorID(req, res){
+        const { id } = req.params
+        try {
+            const adminPorID = await database.Pessoas.findOne(
+                {
+                    where: {
+                        role: String('admin'),
+                        id: Number(id)
+                    }
+                }
+            )
+            return res.status(200).json(adminPorID)
+        } catch (error){
+            return res.status(500).json(error.message)
+        }
+    }
+
+    static async cadastrarAdmin(req, res){
+        const novoAdmin = req.body
+        try {
+            const novoAdminCriado = await database.Pessoas.create(novoAdmin)
+            return res.status(200).json(novoAdminCriado)
+        }catch (error){
+            return res.status(500).json(error.message)
+        }
+    }
+
+    static async atualizarAdmin(req, res){
+        const { id } = req.params
+        const novasInfos = req.body
+        try {
+            await database.Pessoas.update(novasInfos, { where: { id: Number(id) }})
+            const adminAtualizado = await database.Pessoas.findOne( { where: { id: Number(id) }})
+            return res.status(200).json(adminAtualizado)
+        } catch (error) {
+            return res.status(500).json(error.message)
+        }
+    }
+
+    static async excluirAdmin(req, res){
+        const { id, nome } = req.params
+        try {
+            await database.Pessoas.destroy( { where: { id: Number(id) }})
+            return res.status(200).json({ message: `${nome} excluído(a) com sucesso!`})
+        } catch (error) {
+            return res.status(500).json(error.message)
+        }
+    }
+    
+    static async restaurarAdmin(req, res){
+        const { id, nome } = req.params
+        try{
+            await database.Pessoas.restore({where: { id: Number(id)}})
+            return res.status(200).json({message: `${nome} restaurado(a) com sucesso.`})
+        }catch(error){
+            return res.status(500).json(error.message)
+        }
+    }
+
+
 
     ///////////////////////////////////////////////////////////
     //Métodos apenas para a regra usuários na tabela Pessoas
