@@ -14,4 +14,28 @@ async function getAPI(route) {
                 })
     return res;
 }
-module.exports = { getAPI }
+async function putAPI(route, data) {     
+    fetch(`${baseAPI}${route}`, { 
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Z-Key",
+                        "Access-Control-Allow-Methods": "GET, HEAD, POST, PUT, DELETE, OPTIONS"
+                    },
+                    body: JSON.stringify(data) 
+                })
+                .then(response => {
+                    if(response.ok) {
+                        return response.json()
+                    }
+                    else {
+                        alert("Servidor retornou " + response.status + " : " + response.statusText)
+                        return 'err'}
+                })
+                .catch(err => {
+                    console.log("Erro: " + err)
+                })
+
+}
+module.exports = { getAPI, putAPI }
