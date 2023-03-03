@@ -23,26 +23,26 @@
                             <td>{{user.role}}</td>
                             <td style="width: 18%;">
                                 <a class="btn" @click="editar(index)"><i class="fa-solid fa-user-pen" data-bs-toggle="modal" data-bs-target="#modalEdit"></i></a>
-                                <a href="#!" class="btn" @click="archive(index)"><i class="fa-solid fa-user-slash"></i></a>
+                                <a class="btn" @click="deactivate(user.id)"><i class="fa-solid fa-user-slash"></i></a>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 <div class="input-field">
                                     <label for="fname">Nome</label>
-                                    <input class="input-padrao p-primario" placeholder="Nome" id="fname" type="text">
+                                    <input class="input-padrao p-primario" placeholder="Nome" id="fname" type="text" v-model="addInput.nome">
                                 </div>
                             </td>
                             <td>
                                 <div class="input-field">
                                     <label for="femail">Email</label>
-                                    <input class="input-padrao p-primario" placeholder="Email" id="femail" type="email">
+                                    <input class="input-padrao p-primario" placeholder="Email" id="femail" type="email" v-model="addInput.email">
                                 </div>
                             </td>
                             <td>
                                 <div class="input-field">
                                     <label for="frole">Função</label>
-                                    <select class="input-padrao p-primario" id="frole">
+                                    <select class="input-padrao p-primario" id="frole" v-model="addInput.role">
                                         <option value="usuario">Usuário</option>
                                         <option value="funcionario">Funcionário</option>
                                     </select>
@@ -56,7 +56,7 @@
                 </table>
             </div>
         </section>
-        <button class="col btn-terceario" @click="buscaUsuarios">Recarregar</button>
+        <button class="col btn-terceario" @click="readUsers">Recarregar</button>
     </main>
 
     <div id="modalEdit" class="modal fade" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
@@ -108,11 +108,16 @@ export default {
                 nome: "",
                 email: "",
                 role: ""
-            }
+            },
+            addInput: {
+                nome: "",
+                email: "",
+                role: ""
+            },
         }
     },
     methods: {
-        async buscaUsuarios() {
+        async readUsers() {
             // Busca as pessoas incluídas no DB
             const conexao = require('@/assets/js/ConexaoAPI.js')
             let pessoas = await conexao.getAPI('/pessoas')
@@ -131,6 +136,31 @@ export default {
             const conexao = require('@/assets/js/ConexaoAPI.js')
             await conexao.putAPI(`/pessoas/${id}`, dados)
             console.log(id, dados)
+        },
+        add: function() {
+            var newUser = {
+                nome: this.addInput.nome,
+                email: this.addInput.email,
+                role: this.addInput.role,
+                createdAt: new Date().getTime(),
+                updatedAt: new Date().getTime(),
+                password: 'royal123',
+                ativo: 1
+            }
+
+            console.log(newUser)
+            this.createUser(newUser)
+            this.readUsers()
+        },
+        async createUser(newUser) {
+            const conexao = require('@/assets/js/ConexaoAPI.js')
+            await conexao.postAPI(`/pessoas`, newUser)
+        },
+        async deactivate(index) {
+            const conexao = require('@/assets/js/ConexaoAPI.js')
+            await conexao.deleteAPI(`/pessoas/${index}`)
+            console.log(index)
+            this.readUsers()
         }
     }
 }

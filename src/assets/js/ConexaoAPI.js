@@ -14,6 +14,7 @@ async function getAPI(route) {
                 })
     return res;
 }
+
 async function putAPI(route, data) {     
     fetch(`${baseAPI}${route}`, { 
                     method: "PUT",
@@ -38,4 +39,46 @@ async function putAPI(route, data) {
                 })
 
 }
-module.exports = { getAPI, putAPI }
+
+
+async function postAPI(route, data) {     
+    fetch(`${baseAPI}${route}`, { 
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Z-Key",
+                        "Access-Control-Allow-Methods": "GET, HEAD, POST, PUT, DELETE, OPTIONS"
+                    },
+                    body: JSON.stringify(data) 
+                })
+                .then(response => {
+                    if(response.ok) {
+                        return response.json()
+                    }
+                    else {
+                        alert("Servidor retornou " + response.status + " : " + response.statusText)
+                        return 'err'}
+                })
+                .catch(err => {
+                    console.log("Erro: " + err)
+                })
+
+}
+
+async function deleteAPI(route) {     
+    let res = fetch(`${baseAPI}${route}`, { method: "DELETE" })
+                .then(response => {
+                    if(response.ok) {
+                        return response.json()
+                    }
+                    else {
+                        alert("Servidor retornou " + response.status + " : " + response.statusText)
+                        return 'err'}
+                })
+                .catch(err => {
+                    console.log("Erro: " + err)
+                })
+    return res;
+}
+module.exports = { getAPI, putAPI, postAPI, deleteAPI }
