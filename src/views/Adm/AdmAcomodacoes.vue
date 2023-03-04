@@ -2,50 +2,47 @@
     <main>
         <section class="section-pd">
             <div class="p-top">
-                <h2 class="h2-primario">Lista de Usuários</h2>
+                <h2 class="h2-primario">Lista de Acomodações</h2>
             </div>
             <div class="">
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Função</th>
+                            <th>Tipo</th>
+                            <th>Descrição</th>
+                            <th>Preço</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(user,index) in users" :key="user.id">
-                            <td>{{user.id}}</td>
-                            <td>{{user.nome}}</td>
-                            <td>{{user.email}}</td>
-                            <td>{{user.role}}</td>
+                        <tr v-for="(acomodacao,index) in acomodacoes" :key="acomodacao.id">
+                            <td>{{acomodacao.id}}</td>
+                            <td>{{acomodacao.tipo}}</td>
+                            <td>{{acomodacao.descricao_acomodacoes}}</td>
+                            <td>RS {{acomodacao.preco}},00</td>
                             <td style="width: 18%;">
                                 <a class="btn" @click="editar(index)"><i class="fa-solid fa-user-pen" data-bs-toggle="modal" data-bs-target="#modalEdit"></i></a>
-                                <a class="btn" @click="deactivate(user.id)"><i class="fa-solid fa-user-slash"></i></a>
+                                <a class="btn" @click="deactivate(acomodacao.id)"><i class="fa-solid fa-user-slash"></i></a>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 <div class="input-field">
-                                    <label for="fname">Nome</label>
-                                    <input class="input-padrao p-primario" placeholder="Nome" id="fname" type="text" v-model="addInput.nome">
+                                    <label for="ftipo">Tipo</label>
+                                    <input class="input-padrao p-primario" placeholder="Tipo" id="ftipo" type="text" v-model="addInput.tipo">
                                 </div>
                             </td>
                             <td>
                                 <div class="input-field">
-                                    <label for="femail">Email</label>
-                                    <input class="input-padrao p-primario" placeholder="Email" id="femail" type="email" v-model="addInput.email">
+                                    <label for="fdescricao">Descrição</label>
+                                    <textarea class="input-padrao p-primario" placeholder="Descrição" id="fdescricao" v-model="addInput.descricao_acomodacoes" />
                                 </div>
                             </td>
                             <td>
                                 <div class="input-field">
-                                    <label for="frole">Função</label>
-                                    <select class="input-padrao p-primario" id="frole" v-model="addInput.role">
-                                        <option value="usuario">Usuário</option>
-                                        <option value="funcionario">Funcionário</option>
-                                    </select>
+                                    <label for="fpreco">Preço</label>
+                                    <input class="input-padrao p-primario" placeholder="Preço" id="fpreco" type="number" v-model="addInput.preco" min="1"/>
                                 </div>
                             </td>
                             <td>
@@ -56,7 +53,7 @@
                 </table>
             </div>
         </section>
-        <button class="col btn-terceario" @click="readUsers">Recarregar</button>
+        <button class="col btn-terceario" @click="readAcomodacoes">Recarregar</button>
     </main>
 
     <div id="modalEdit" class="modal fade" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
@@ -73,19 +70,16 @@
                             <input id="mfid" type="text" class="input-padrao p-primario bg-secondary text-white" v-model="editInput.id" readonly>
                         </div>
                         <div class="input-field col s6">
-                            <label for="mfnome">Nome</label>
-                            <input placeholder="Nome" id="mfnome" type="text" class="input-padrao p-primario" v-model="editInput.nome">
+                            <label for="mtipo">Tipo</label>
+                            <input class="input-padrao p-primario" placeholder="Tipo" id="mtipo" type="text" v-model="editInput.tipo">
                         </div>
                         <div class="input-field col s6">
-                            <label for="mfemail">Email</label>
-                            <input class="input-padrao p-primario" placeholder="Email" id="mfemail" type="email" v-model="editInput.email">
+                            <label for="mdescricao">Descrição</label>
+                            <textarea class="input-padrao p-primario" placeholder="Descrição" id="mdescricao" v-model="editInput.descricao_acomodacoes" />
                         </div>
                         <div class="input-field col s6">
-                            <label for="mfrole">Função</label>
-                            <select class="input-padrao p-primario bg-white" id="mfrole" v-model="editInput.role">
-                                <option value="usuario">Usuário</option>
-                                <option value="funcionario">Funcionário</option>
-                            </select>
+                            <label for="mpreco">Preço</label>
+                            <input class="input-padrao p-primario" placeholder="Preço" id="mpreco" type="number" v-model="editInput.preco" min="1"/>
                         </div>
                     </form>
                 </div>                
@@ -102,72 +96,73 @@
 export default {
     data() {
         return {
-            users: [],
+            acomodacoes: [],
             editInput: {
                 id: "",
-                nome: "",
-                email: "",
-                role: ""
+                tipo: "",
+                descricao_acomodacoes: "",
+                preco: ""
             },
             addInput: {
-                nome: "",
-                email: "",
-                role: ""
+                tipo: "",
+                descricao_acomodacoes: "",
+                preco: ""
             },
         }
     },
     methods: {
-        async readUsers() {
+        async readAcomodacoes() {
             // Busca as pessoas incluídas no DB
             const conexao = require('@/assets/js/ConexaoAPI.js')
-            let pessoas = await conexao.getAPI('/pessoas')
-            this.users = pessoas
+            let acomodacoes = await conexao.getAPI('/acomodacoes')
+            this.acomodacoes = acomodacoes
         },
         editar(index) {
-            this.editInput = this.users[index];
+            this.editInput = this.acomodacoes[index];
         },
         async updateUser() {
             let id = this.editInput.id
             let dados = {
-                nome: this.editInput.nome, 
-                email: this.editInput.email, 
-                role: this.editInput.role,
+                tipo: this.editInput.tipo,
+                descricao_acomodacoes: this.editInput.descricao_acomodacoes,
+                preco: this.editInput.preco,
                 updatedAt: new Date().getTime()
             } 
             const conexao = require('@/assets/js/ConexaoAPI.js')
-            await conexao.putAPI(`/pessoas/${id}`, dados)
-            console.log(id, dados)
+            await conexao.putAPI(`/acomodacoes/${id}`, dados)
         },
         add: function() {
-            if (this.addInput.nome == '' || this.addInput.email == '' || this.addInput.role == '') {
+            if (this.addInput.tipo == '' || this.addInput.descricao_acomodacoes == '' || this.addInput.preco == '') {
                 alert('Favor preencher todos os campos!')
                 return
             }
 
-            var newUser = {
-                nome: this.addInput.nome,
-                email: this.addInput.email,
-                role: this.addInput.role,
+            var newAcomodacao = {
+                tipo: this.addInput.tipo,
+                descricao_acomodacoes: this.addInput.descricao_acomodacoes,
+                preco: this.addInput.preco,
                 createdAt: new Date().getTime(),
-                updatedAt: new Date().getTime(),
-                password: 'royal123',
-                ativo: 1
+                updatedAt: new Date().getTime()
             }
 
-            console.log(newUser)
-            this.createUser(newUser)
-            this.readUsers()
+            this.createAcomodacao(newAcomodacao)
+            this.readAcomodacoes()
         },
-        async createUser(newUser) {
+        async createAcomodacao(newAcomodacao) {
             const conexao = require('@/assets/js/ConexaoAPI.js')
-            await conexao.postAPI(`/pessoas`, newUser)
+            await conexao.postAPI(`/acomodacoes`, newAcomodacao)
         },
         async deactivate(index) {
             const conexao = require('@/assets/js/ConexaoAPI.js')
-            await conexao.deleteAPI(`/pessoas/${index}`)
-            console.log(index)
-            this.readUsers()
+            await conexao.deleteAPI(`/acomodacoes/${index}`)
+            this.readAcomodacoes()
         }
     }
 }
 </script>
+
+<style scoped>
+textarea {
+    height: 5rem;
+}
+</style>

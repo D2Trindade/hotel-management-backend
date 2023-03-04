@@ -33,7 +33,8 @@ export default {
             ],
             paginasAdm: [
                 {id: 'navAdmHome', nome: 'Home', link: '/admHome'},
-                {id: 'navAdmUsuarios', nome: 'Usuários', link: '/admUsers'}
+                {id: 'navAdmUsuarios', nome: 'Usuários', link: '/admUsers'},
+                {id: 'navAdmAcomodacoes', nome: 'Acomodações', link: '/admAcomodacoes'}
             ]
         }
     },
