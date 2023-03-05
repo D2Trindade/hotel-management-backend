@@ -9,10 +9,12 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.6",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^5.2.3",
     "core-js": "^3.8.3",
     "cors": "^2.8.5",
     "path": "^0.12.7",
+    "path-browserify": "^1.0.1",
     "sequelize": "^6.28.1",
     "sequelize-cli": "^6.6.0",
     "vue": "^3.2.36",

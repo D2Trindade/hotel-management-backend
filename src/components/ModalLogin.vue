@@ -28,20 +28,20 @@
                                     </div>
                                     <div class="sign-up-htm">
                                         <div class="modalLogin__group">
-                                            <input placeholder="Usuário" id="cadastroUser" type="text" class="input">
+                                            <input placeholder="Usuário" id="cadastroUser" type="text" class="input" v-model="addInput.nome">
                                         </div>
                                         <div class="modalLogin__group">
-                                            <input placeholder="Email" id="cadastroEmail" type="email" class="input">
+                                            <input placeholder="Email" id="cadastroEmail" type="email" class="input" v-model="addInput.email">
                                         </div>
                                         <div class="modalLogin__group">
-                                            <input placeholder="Senha" id="cadastroPass" type="password" class="input" data-type="password">
+                                            <input placeholder="Senha" id="cadastroPass" type="password" class="input" data-type="password" v-model="addInput.password">
                                         </div>
                                         <div class="modalLogin__group">
                                             <input placeholder="Repita a senha" id="cadastroRepass" type="password" class="input" data-type="password">
                                         </div>
 
                                         <div class="modalLogin__group">
-                                            <input type="submit" class="button" value="Cadastrar" @click="cadastroLogin" data-bs-dismiss="modal">
+                                            <input type="submit" class="button" value="Cadastrar" @click="add" data-bs-dismiss="modal">
                                         </div>
                                         <div class="hr"></div>
                                         <div class="modalLogin__footer">
@@ -59,41 +59,72 @@
 </template>
 
 <script>
+import { criptografarSenha } from '@/assets/js/Criptografar'
 export default {
     name: "ModalLogin",
     data() {
         return {
-            cadastros: []
+            cadastros: [],
+            users: [],
+            addInput: {
+                nome: "",
+                email: ""
+            }
         }
     },
     methods: {
-        cadastroLogin () {
-            let cadastroUser = document.querySelector("#cadastroUser").value
-            let cadastroEmail = document.querySelector("#cadastroEmail").value
-            let cadastroPass = document.querySelector("#cadastroPass").value
+        async readUsers() {
+            // Busca as pessoas incluídas no DB
+            const conexao = require('@/assets/js/ConexaoAPI.js')
+            let pessoas = await conexao.getAPI('/pessoas')
+            this.users = pessoas
+        },
+        add: function() {
+            var newUser = {
+                nome: this.addInput.nome,
+                ativo: true,
+                email: this.addInput.email,
+                role: 'usuario',
+                createdAt: new Date().getTime(),
+                updatedAt: new Date().getTime(),
+                deletedAt: null,
+                password: criptografarSenha(this.addInput.password)
+            }
+            console.log(newUser)
+            this.createUser(newUser)
+            this.readUsers()
+        },
+        async createUser(newUser) {
+            const conexao = require('@/assets/js/ConexaoAPI.js')
+            await conexao.postAPI(`/pessoas`, newUser)
+        },
+        // cadastroLogin () {
+        //     let cadastroUser = document.querySelector("#cadastroUser").value
+        //     let cadastroEmail = document.querySelector("#cadastroEmail").value
+        //     let cadastroPass = document.querySelector("#cadastroPass").value
             // let cadastroRepass = document.querySelector("#cadastroRepass").value
 
             // Cria o objeto cadastro
-            let cadastro = {}
-            cadastro.nome = cadastroUser
-            cadastro.email = cadastroEmail
-            cadastro.senha = cadastroPass
+            // let cadastro = {}
+            // cadastro.nome = cadastroUser
+            // cadastro.email = cadastroEmail
+            // cadastro.senha = cadastroPass
 
             // Acrescenta o cadastro aos cadastros no localstorage
-            if(localStorage.getItem('cadastros')) {
-                this.cadastros = JSON.parse(localStorage.getItem('cadastros'))
-            }
-            this.cadastros.push(cadastro)
-            localStorage.setItem('cadastros', JSON.stringify(this.cadastros))
+            // if(localStorage.getItem('cadastros')) {
+            //     this.cadastros = JSON.parse(localStorage.getItem('cadastros'))
+            // }
+            // this.cadastros.push(cadastro)
+            // localStorage.setItem('cadastros', JSON.stringify(this.cadastros))
 
-            this.clearLogin()
-            // Realiza o login
-            localStorage.setItem('login', cadastroEmail)
-            document.querySelector('#logado').classList.remove('esconder')
-            document.querySelector('#cadastro').classList.add('esconder')
-            document.querySelector('#logado-usuario').innerText = `Bem-vindo ${cadastroUser}`
+            // this.clearLogin()
+            // // Realiza o login
+            // localStorage.setItem('login', cadastroEmail)
+            // document.querySelector('#logado').classList.remove('esconder')
+            // document.querySelector('#cadastro').classList.add('esconder')
+            // document.querySelector('#logado-usuario').innerText = `Bem-vindo ${cadastroUser}`
 
-        },
+        // },
         // Limpa os dados preenchidos do cadastro
         clearLogin() {
             document.querySelector("#cadastroUser").value = ''

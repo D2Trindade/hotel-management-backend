@@ -6,6 +6,7 @@ const app = express()
 const port = 3000
 
 app.options('*', cors())
+app.use(express.urlencoded({ extended: false}))
 app.use((req,res,next) => {
     res.setHeader("Access-Control-Allow-Origin", "*")
     res.header("Access-Control-Allow-Origin", "*")
