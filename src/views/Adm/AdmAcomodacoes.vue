@@ -95,6 +95,7 @@
 export default {
     data() {
         return {
+            logado: false,
             acomodacoes: [],
             editInput: {
                 id: "",
@@ -159,6 +160,17 @@ export default {
     },
     mounted: function() {
         this.readAcomodacoes()
+    },
+    beforeMount: function() {
+        // Valida se está logado
+        if (localStorage.getItem('loginFunc')) {
+            this.logado = true
+        }
+        else {
+            this.logado = false
+            alert('Acesso restrito')
+            this.$router.push('/')
+        }
     }
 }
 </script>

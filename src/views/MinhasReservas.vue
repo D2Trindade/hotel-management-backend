@@ -92,13 +92,13 @@ export default {
             if (objReservas[i].user == login) {
                 this.reservas.push(objReservas[i]);
                 if(objReservas[i].quarto == 'standard') {
-                    quarto = '7'
+                    quarto = '71'
                 }
                 else if(objReservas[i].quarto == 'luxo') {
-                    quarto = '4'
+                    quarto = '81'
                 }
                 else {
-                    quarto = '1'
+                    quarto = '91'
                 }
                 this.imgQuarto.push(quarto)
 

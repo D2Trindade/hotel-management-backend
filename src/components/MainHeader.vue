@@ -3,7 +3,7 @@
         <div class="text-center">
             <span class="p-4" id="logado-usuario"></span>
         </div>
-        <div class="container" id="logado">
+        <div class="container esconder" id="logado">
             <button class="btn btn-secondary text-bg-secondary col p-1 " @click="sairLogin">
                 Sair
             </button>
@@ -28,6 +28,11 @@
     <header class="header--container container-fluid text-end m-0 p-1" v-if="logged">
         <div class="text-center">
             <span class="p-4" id="logadoAdm-usuario">Seja bem-vindo!</span>
+        </div>
+        <div class="container esconder" id="cadastro">
+            <button class="btn btn-secondary col p-1" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                Login
+            </button>
         </div>
         <div class="container" id="logadoAdm">
             <button class="btn btn-secondary text-bg-secondary col p-1 " @click="sairAdm">
@@ -110,6 +115,7 @@ export default {
         logged() {
             if (document.querySelector('#logadoAdm') && !localStorage.getItem('loginFunc')) {
                 document.querySelector('#logadoAdm').classList.add('esconder')
+                // document.querySelector('#logado').classList.add('esconder')
             }
 
             if(this.$route.name != null) return this.$route.name.includes('adm')

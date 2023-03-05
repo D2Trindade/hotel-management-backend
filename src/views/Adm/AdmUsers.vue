@@ -101,6 +101,7 @@
 export default {
     data() {
         return {
+            logado: false,
             users: [],
             editInput: {
                 id: "",
@@ -170,6 +171,17 @@ export default {
     },
     mounted: function() {
         this.readUsers()
+    },
+    beforeMount: function() {
+        // Valida se está logado
+        if (localStorage.getItem('loginFunc')) {
+            this.logado = true
+        }
+        else {
+            this.logado = false
+            alert('Acesso restrito')
+            this.$router.push('/')
+        }
     }
 }
 </script>

@@ -18,9 +18,9 @@
             
         <h3 class="h3-primario text-center my-5">Nossas acomodações</h3>
         <div class="acomodacoes acomodacoes--presidencial acomodacoes--luxo acomodacoes--standard">
-          <router-link to="/reservas"><AcomodacaoCard id="1" v-on:click="escolherPresidencial()"/></router-link>
-          <router-link to="/reservas"><AcomodacaoCard id="4" v-on:click="escolherLuxo()" /></router-link>
-          <router-link to="/reservas"><AcomodacaoCard id="7" v-on:click="escolherStandard()"/></router-link>
+          <router-link to="/reservas"><AcomodacaoCard id="71" v-on:click="escolherPresidencial()"/></router-link>
+          <router-link to="/reservas"><AcomodacaoCard id="81" v-on:click="escolherLuxo()" /></router-link>
+          <router-link to="/reservas"><AcomodacaoCard id="91" v-on:click="escolherStandard()"/></router-link>
         </div>
         
         <ImagesCarousel tipo="acomodacoes" 

@@ -27,13 +27,13 @@
           <p class="p-primario">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dicta voluptatibus temporibus necessitatibus possimus tenetur ad facilis inventore, reiciendis amet magni quis non, aliquid odit et sit ducimus! Deserunt soluta deleniti a! Ea, praesentium assumenda. Quisquam harum asperiores in ad, maiores velit fugiat dicta molestias magnam esse id non repellat.</p>
           <div class="acomodacoes acomodacoes--presidencial acomodacoes--luxo acomodacoes--standard">
             <router-link to="/reservas">
-              <AcomodacaoCard id="1" />
+              <AcomodacaoCard id="71" />
             </router-link>
             <router-link to="/reservas">
-              <AcomodacaoCard id="4" />
+              <AcomodacaoCard id="81" />
             </router-link>
             <router-link to="/reservas">
-              <AcomodacaoCard id="7" />
+              <AcomodacaoCard id="91" />
             </router-link>
           </div>
           <p class="p-primario">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dicta voluptatibus temporibus necessitatibus possimus tenetur ad facilis inventore, reiciendis amet magni quis non, aliquid odit et sit ducimus! Deserunt soluta deleniti a! Ea, praesentium assumenda. Quisquam harum asperiores in ad, maiores velit fugiat dicta molestias magnam esse id non repellat.</p>
