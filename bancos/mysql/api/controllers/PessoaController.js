@@ -1,5 +1,3 @@
-const { json } = require('body-parser')
-const { h } = require('vue')
 const database = require('../models')
 
 class PessoaController {

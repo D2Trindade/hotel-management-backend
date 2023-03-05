@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const ServicoPorPessoaController = require('../controllers/ServicosPorPessoa')
+const ServicoPorPessoaController = require('../controllers/ServicosPorPessoaController')
 
 const router = Router()
 

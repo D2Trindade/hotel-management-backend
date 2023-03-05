@@ -1,6 +1,3 @@
-
-const { json } = require('body-parser')
-const { parse } = require('path')
 const database = require('../models')
 
 class AcomodacaoController {
