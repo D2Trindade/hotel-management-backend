@@ -1,3 +1,5 @@
+
+
 'use strict';
 const {
   Model
@@ -39,6 +41,16 @@ module.exports = (sequelize, DataTypes) => {
     paranoid: true,
     defaultScope: {where: {ativo: true}}, // Só vai trazer nas consultas as pessoas que estão com a opção ativas
     modelName: 'Pessoas',
+    
   });
+
+
   return Pessoas;
 };
+
+
+  // this.addHook('beforeSave', async Pessoas =>{
+  //   if (Pessoas.password){
+  //     Pessoas.password = await bcrypt.hash(Pessoas.password, 10)
+  //   }
+  // })
