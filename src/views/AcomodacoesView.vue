@@ -5,45 +5,18 @@
         <p class="p-primario" >Descubra as diversas categorias de quartos que o Grand Royal Hotel tem à sua disposição. Projetados para oferecer o máximo conforto, os variados tipos de quartos do nosso hotel foram projetados tendo como base o novo conceito de hotelaria de puro luxo, transformando a sua hospedagem em uma experiência única. Todos eles oferecem amplas áreas e mobiliário moderno e sofisticado.</p>
       </div>
 
-      <div class="p-top" >
-        <h3 class="h3-primario">Quartos Standard:</h3>
-      </div>
-     <div class="acomodacoes acomodacoes--standard">
-        <AcomodacaoCard id="7" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('standard')" />
-        <AcomodacaoCard id="8" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('standard')" />
-        <AcomodacaoCard id="9" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('standard')" />
-        <div class="p-top">
-            <p class="p-primario">Com 60 m², nossas suítes Standard, dispõem de cama Twin e banheiros com box separado.</p>          
+      <div id="boxAcomodacoes" v-for="acomodacao in acomodacoes" :key="acomodacao.id">
+        <div class="p-top" >
+          <h3 class="h3-primario">Quartos {{acomodacao.tipo}}:</h3>
         </div>
-        
-      </div>
-
-      <div class="p-top">
-        <h3 class="h3-primario">Quartos Luxo:</h3>
-      </div>
-      <div class="acomodacoes acomodacoes--luxo">
-        <AcomodacaoCard id="4" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('luxo')" />
-        <AcomodacaoCard id="5" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('luxo')" />
-        <AcomodacaoCard id="6" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('luxo')" />
-        <div class="p-top">
-            <p class="p-primario">Com 90 m², nossas suítes Luxo, dispõem de cama King Size ou Twin e ainda uma confortável área de trabalho. A ampla sala de estar está mobiliada com poltrona, sofá e mesa de café. Os banheiros contam com box separado.</p>
+        <div class="acomodacoes acomodacoes--standard">
+          <AcomodacaoCard :id="acomodacao.id+'1'" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto(acomodacao.tipo.toLowerCase())" />
+          <AcomodacaoCard :id="acomodacao.id+'2'" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto(acomodacao.tipo.toLowerCase())" />
+          <AcomodacaoCard :id="acomodacao.id+'3'" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto(acomodacao.tipo.toLowerCase())" />
+          <div class="p-top">
+            <p class="p-primario">{{acomodacao.descricao_acomodacoes}}</p>          
+          </div>
         </div>
-        
-      </div>
-
-      <div class="p-top">
-        <h3 class="h3-primario">Quartos Presidenciais:</h3>
-      </div>
-      <div class="acomodacoes acomodacoes--presidencial">
-        <AcomodacaoCard id="1"  data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('presidencial')" />
-        <AcomodacaoCard id="2" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('presidencial')" />
-        <AcomodacaoCard id="3" data-bs-toggle="modal" data-bs-target="#modalAcomodacoes" role="button" @click="escolheQuarto('presidencial')" />
-        <div class="p-top">
-            <p class="p-primario">Com 160 m², nossas suítes Presidenciais contam com espaços privilegiados, cozinha, escritório e sala de estar. O dormitório apresenta um espaço grande, único, integrado e muito iluminado, com vista exuberante. Além disso, dispõe de
-            banheiro com uma espaçosa jacuzzi, chuveiro “rain shower” duplo e sauna. Os hóspedes da suíte têm direito a massagens no
-            nosso Spa e podem contar com serviço de concierge e mordomo 24 horas por dia.</p>          
-        </div>
-        
       </div>
 
       <ModalAcomodacoes :nomeQuarto="quarto" ref="modalAcom"/>
@@ -66,7 +39,8 @@ export default{
   data() {
     return {
         comentarios: [],
-        quarto: ''
+        quarto: '',
+        acomodacoes: []
     }
   },
   methods: {
@@ -94,7 +68,16 @@ export default{
                                    document.querySelector('#comentarioDescricao').value )
 
       comment.salvarComentario(this.comentarios)     
+    },
+    async carregarAcomodacoes() {
+      // Busca as acomodações incluídas no DB
+      const conexao = require('@/assets/js/ConexaoAPI.js')
+      let acomodacoes = await conexao.getAPI('/acomodacoes')
+      this.acomodacoes = acomodacoes
     }
+  },
+  mounted: function() {
+    this.carregarAcomodacoes()
   }
 }
 </script>

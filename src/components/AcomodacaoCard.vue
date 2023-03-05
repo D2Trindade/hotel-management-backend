@@ -15,14 +15,14 @@ export default {
 </script>
 
 <style>
-#card1 {
+#card91 {
     background-image: url(@/assets/images/acomodacoes/acomodacoes-presidencial-1.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-#card1 h2::before {
+#card91 h2::before {
     content: "Quarto 1 Presidencial";
     display: block;
     background-color: rgba(33, 50, 66, 0.4);
@@ -33,14 +33,14 @@ export default {
     margin-top: 5vh;
 }
 
-#card2 {
+#card92 {
     background-image: url(@/assets/images/acomodacoes/acomodacoes-presidencial-2.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-#card2 h2::before {
+#card92 h2::before {
     content: "Quarto 2 Presidencial";
     display: block;
     background-color: rgba(33, 50, 66, 0.4);
@@ -51,14 +51,14 @@ export default {
     margin-top: 5vh;
 }
 
-#card3 {
+#card93 {
     background-image: url(@/assets/images/acomodacoes/acomodacoes-presidencial-3.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-#card3 h2::before {
+#card93 h2::before {
     content: "Quarto 3 Presidencial";
     display: block;
     background-color: rgba(33, 50, 66, 0.4);
@@ -69,14 +69,14 @@ export default {
     margin-top: 5vh;
 }
 
-#card4 {
+#card81 {
     background-image: url(@/assets/images/acomodacoes/acomodacoes-luxo-1.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-#card4 h2::before {
+#card81 h2::before {
     content: "Quarto 1 Luxo";
     display: block;
     background-color: rgba(33, 50, 66, 0.4);
@@ -87,14 +87,14 @@ export default {
     margin-top: 5vh;
 }
 
-#card5 {
+#card82 {
     background-image: url(@/assets/images/acomodacoes/acomodacoes-luxo-2.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-#card5 h2::before {
+#card82 h2::before {
     content: "Quarto 2 Luxo";
     display: block;
     background-color: rgba(33, 50, 66, 0.4);
@@ -105,14 +105,14 @@ export default {
     margin-top: 5vh;
 }
 
-#card6 {
+#card83 {
     background-image: url(@/assets/images/acomodacoes/acomodacoes-luxo-3.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-#card6 h2::before {
+#card83 h2::before {
     content: "Quarto 3 Luxo";
     display: block;
     background-color: rgba(33, 50, 66, 0.4);
@@ -123,14 +123,14 @@ export default {
     margin-top: 5vh;
 }
 
-#card7 {
+#card71 {
     background-image: url(@/assets/images/acomodacoes/acomodacoes-standard-1.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-#card7 h2::before {
+#card71 h2::before {
     content: "Quarto 1 Standard";
     display: block;
     background-color: rgba(33, 50, 66, 0.4);
@@ -141,14 +141,14 @@ export default {
     margin-top: 5vh;
 }
 
-#card8 {
+#card72 {
     background-image: url(@/assets/images/acomodacoes/acomodacoes-standard-2.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-#card8 h2::before {
+#card72 h2::before {
     content: "Quarto 2 Standard";
     display: block;
     background-color: rgba(33, 50, 66, 0.4);
@@ -159,14 +159,14 @@ export default {
     margin-top: 5vh;
 }
 
-#card9 {
+#card73 {
     background-image: url(@/assets/images/acomodacoes/acomodacoes-standard-3.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-#card9 h2::before {
+#card73 h2::before {
     content: "Quarto 3 Standard";
     display: block;
     background-color: rgba(33, 50, 66, 0.4);

@@ -56,7 +56,6 @@
                 </table>
             </div>
         </section>
-        <button class="col btn-terceario" @click="readUsers">Recarregar</button>
     </main>
 
     <div id="modalEdit" class="modal fade" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
@@ -168,6 +167,9 @@ export default {
             console.log(index)
             this.readUsers()
         }
+    },
+    mounted: function() {
+        this.readUsers()
     }
 }
 </script>

@@ -53,7 +53,6 @@
                 </table>
             </div>
         </section>
-        <button class="col btn-terceario" @click="readAcomodacoes">Recarregar</button>
     </main>
 
     <div id="modalEdit" class="modal fade" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
@@ -112,7 +111,7 @@ export default {
     },
     methods: {
         async readAcomodacoes() {
-            // Busca as pessoas incluídas no DB
+            // Busca as acomodações incluídas no DB
             const conexao = require('@/assets/js/ConexaoAPI.js')
             let acomodacoes = await conexao.getAPI('/acomodacoes')
             this.acomodacoes = acomodacoes
@@ -157,6 +156,9 @@ export default {
             await conexao.deleteAPI(`/acomodacoes/${index}`)
             this.readAcomodacoes()
         }
+    },
+    mounted: function() {
+        this.readAcomodacoes()
     }
 }
 </script>
