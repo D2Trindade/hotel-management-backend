@@ -1,8 +1,24 @@
-const { json } = require('body-parser')
-const { h } = require('vue')
 const database = require('../models')
 
 class PessoaController {
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //Métodos para login de usuários, hóspedes e funcionários
+    static async listarLoginUsuario(req, res){
+        const { email} = req.params
+        try {
+            const infos = await database.Pessoas.findOne(
+                {
+                    where: {
+                        email: String(email)
+                    }
+                }
+            )
+            return res.status(200).json(infos.password)
+        } catch (error){
+            return res.status(500).json(error.message)
+        }
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     //Métodos para todas as pessoas com as regras (usuario, hospede e funcionario)

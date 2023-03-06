@@ -3,6 +3,12 @@ const PessoaController = require('../controllers/PessoaController')
 
 const router = Router()
 
+
+//Rota para login
+router.get('/pessoas/:email', PessoaController.listarLoginUsuario)
+
+
+
 // Rotas para todas as pessoas com as 3 regras (usuario, hospede, funcionario)
 router.get('/pessoas', PessoaController.listarPessoas)
 router.get('/pessoas/:id', PessoaController.listarPessoaPorID)
