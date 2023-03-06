@@ -12,14 +12,14 @@
                                 <div class="login-form">
                                     <div class="sign-in-htm">
                                         <div class="modalLogin__group">
-                                            <input placeholder="Email" id="loginEmail" type="email" class="input">
+                                            <input placeholder="Email" id="loginEmail" type="email" class="input" v-model="readInput.email">
                                         </div>
                                         <div class="modalLogin__group">
-                                            <input placeholder="Senha" id="loginPass" type="password" class="input" data-type="password">
+                                            <input placeholder="Senha" id="loginPass" type="password" class="input" data-type="password" v-model="readInput.password">
                                         </div>
 
                                         <div class="modalLogin__group">
-                                            <input type="submit" class="button" value="Entrar" @click="realizaLogin" data-bs-dismiss="modal">
+                                            <input type="submit" class="button" value="Entrar" @click="login" data-bs-dismiss="modal">
                                         </div>
                                         <div class="hr"></div>
                                         <div class="modalLogin__footer">
@@ -59,17 +59,22 @@
 </template>
 
 <script>
-import { criptografarSenha } from '@/assets/js/Criptografar'
+import { criptografarSenha, descriptografarSenha } from '@/assets/js/Criptografar.js'
 export default {
     name: "ModalLogin",
     data() {
         return {
             cadastros: [],
             users: [],
+            user: [],
             addInput: {
                 nome: "",
                 email: ""
-            }
+            },
+            readInput: {
+                email: "",
+                password: ""
+            },
         }
     },
     methods: {
@@ -94,10 +99,34 @@ export default {
             this.createUser(newUser)
             this.readUsers()
         },
+        async login(){
+            var usuarioSistema = {
+                email: this.readInput.email,
+                password: this.readInput.password
+            }
+            await this.lerUsuario(this.readInput.email)
+
+            if (descriptografarSenha(this.readInput.password, this.user)){
+                document.querySelector('#logado').classList.remove('esconder')
+                document.querySelector('#cadastro').classList.add('esconder')
+                document.querySelector('#navMinhasreservas').parentNode.classList.remove('d-none')
+                document.querySelector('#logado-usuario').innerText = `Seja bem-vindo(a)!`
+            } else{
+                alert ('Usuário ou senha não cadastrados!')
+            }
+            console.log(`usuarioSistema: email ${usuarioSistema.email} senha: ${usuarioSistema.password}`)
+            console.log(`this.user: ${this.user}`)
+        },
         async createUser(newUser) {
             const conexao = require('@/assets/js/ConexaoAPI.js')
             await conexao.postAPI(`/pessoas`, newUser)
         },
+        async lerUsuario(email) {
+            const api = require('@/assets/js/ConexaoAPI.js')
+            let usuario = await api.getAPI(`/pessoas/${email}`)
+            this.user = usuario
+        },
+
         // cadastroLogin () {
         //     let cadastroUser = document.querySelector("#cadastroUser").value
         //     let cadastroEmail = document.querySelector("#cadastroEmail").value
@@ -131,50 +160,53 @@ export default {
             document.querySelector("#cadastroEmail").value = ''
             document.querySelector("#cadastroPass").value = ''
             document.querySelector("#cadastroRepass").value = ''
-        },
-        realizaLogin() {
-            let loginEmail = document.querySelector("#loginEmail").value
-            let loginPass = document.querySelector("#loginPass").value
-            let valida = this.validaLogin (loginEmail, loginPass)
-            loginEmail = loginEmail.trim().replace(/"|'|/gi,'')
-            loginPass = loginPass.trim().replace(/"|'/gi,'')
-           
-            if (!loginEmail) {
-                alert('Campo de email vazio!')
-                return
-            }
-            if (!loginPass) {
-                alert('Campo de senha vazio!')
-                return
-            }
-
-            if (valida != -1) {
-                localStorage.setItem('login', loginEmail)
-                document.querySelector('#logado').classList.remove('esconder')
-                document.querySelector('#cadastro').classList.add('esconder')
-                document.querySelector('#navMinhasreservas').parentNode.classList.remove('d-none')
-                document.querySelector('#logado-usuario').innerText = `Bem-vindo ${this.cadastros[valida].nome}`
-            } else {
-                alert ('Cadastro não encontrado!')
-            }
-            document.querySelector("#loginEmail").value = ''
-            document.querySelector("#loginPass").value = ''  
-            window.location = "/"      
-        },
-        // Valida se o login realizado está na lista de cadastros (email e senha)
-        validaLogin(loginEmail, loginPass) {
-            if(localStorage.getItem('cadastros')) {
-                this.cadastros = JSON.parse(localStorage.getItem('cadastros'))
-
-                // Varre a lista de cadastros
-                for (let i = 0; i < this.cadastros.length; i++) {
-                    if (this.cadastros[i].email == loginEmail && this.cadastros[i].senha == loginPass) {
-                        return i
-                    }
-                }
-            }
-            return -1
         }
+        // ,
+        // realizaLogin() {
+        //     let loginEmail = document.querySelector("#loginEmail").value
+        //     let loginPass = document.querySelector("#loginPass").value
+        //     let valida = this.validaLogin (loginEmail, loginPass)
+        //     loginEmail = loginEmail.trim().replace(/"|'|/gi,'')
+        //     loginPass = loginPass.trim().replace(/"|'/gi,'')
+           
+        //     if (!loginEmail) {
+        //         alert('Campo de email vazio!')
+        //         return
+        //     }
+        //     if (!loginPass) {
+        //         alert('Campo de senha vazio!')
+        //         return
+        //     }
+
+        //     if (valida != -1) {
+        //         localStorage.setItem('login', loginEmail)
+        //         document.querySelector('#logado').classList.remove('esconder')
+        //         document.querySelector('#cadastro').classList.add('esconder')
+        //         document.querySelector('#navMinhasreservas').parentNode.classList.remove('d-none')
+        //         document.querySelector('#logado-usuario').innerText = `Bem-vindo ${this.cadastros[valida].nome}`
+        //     } else {
+        //         alert ('Cadastro não encontrado!')
+        //     }
+        //     document.querySelector("#loginEmail").value = ''
+        //     document.querySelector("#loginPass").value = ''  
+        //     window.location = "/"      
+        // },
+
+        // Valida se o login realizado está na lista de cadastros (email e senha)
+        // validaLogin(loginEmail, loginPass) {
+        //     if(localStorage.getItem('cadastros')) {
+        //         this.cadastros = JSON.parse(localStorage.getItem('cadastros'))
+
+        //         // Varre a lista de cadastros
+        //         for (let i = 0; i < this.cadastros.length; i++) {
+        //             if (this.cadastros[i].email == loginEmail && this.cadastros[i].senha == loginPass) {
+        //                 return i
+        //             }
+        //         }
+        //     }
+        //     return -1
+        // }
+
     }
 }
 </script>
