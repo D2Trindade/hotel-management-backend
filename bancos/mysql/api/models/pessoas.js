@@ -11,27 +11,23 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Pessoas.init({
-    nome: DataTypes.STRING,
-    // nome: {
-    //   type: DataTypes.STRING,
-    //   validate: {  // Exemplo de uso de funções em JavaScript para validação dos dados
-    //     funcaoValidadora: function(dado){
-    //       if(dado.length < 3) throw new Error(`O campo nome deve ter mais de 3 caracteres.`)
-    //     }
-    //   }
-    // },
+    nome: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: true,
+      }
+    },
     ativo: DataTypes.BOOLEAN,
-    email: DataTypes.STRING,
-    // email: {
-    //   types: DataTypes.STRING,
-    //   unique: true, // Exemplo de constraints em SQL
-    //     validate: {  //Faz a validação automática do email, apenas uma validação quanto ao formato da string
-    //       isEmail: {
-    //         args: true,
-    //         msg: 'Dado do tipo e-mail é inválido!'
-    //       }
-    //     }
-    // },
+    email: {
+      type: DataTypes.STRING,
+      unique: true,
+        validate: { 
+          isEmail: {
+            args: true,
+            msg: 'É necessário informar um email válido!'
+          }
+        }
+    },
     password: DataTypes.STRING, 
     role: DataTypes.STRING
   }, {
