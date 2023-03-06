@@ -98,6 +98,7 @@
 </template>
 
 <script>
+import { criptografarSenha } from '@/assets/js/Criptografar'
 export default {
     data() {
         return {
@@ -143,17 +144,15 @@ export default {
                 alert('Favor preencher todos os campos!')
                 return
             }
-
             var newUser = {
                 nome: this.addInput.nome,
                 email: this.addInput.email,
                 role: this.addInput.role,
                 createdAt: new Date().getTime(),
                 updatedAt: new Date().getTime(),
-                password: 'royal123',
+                password: criptografarSenha('royal123'),
                 ativo: 1
             }
-
             console.log(newUser)
             this.createUser(newUser)
             this.readUsers()
