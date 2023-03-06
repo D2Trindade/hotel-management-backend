@@ -6,4 +6,9 @@ function criptografarSenha(password){
 	return hash
 }
 
-module.exports = {criptografarSenha}
+function descriptografarSenha(password, passwordCripto){
+    const comparaSenha = bcrypt.compareSync(password, passwordCripto)
+    return comparaSenha
+}
+
+module.exports = {criptografarSenha, descriptografarSenha}
