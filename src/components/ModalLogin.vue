@@ -97,7 +97,14 @@ export default {
             }
             console.log(newUser)
             this.createUser(newUser)
-            this.readUsers()
+            this.clearLogin()
+
+            localStorage.setItem('login', newUser.email)
+            document.querySelector('#logado').classList.remove('esconder')
+            document.querySelector('#cadastro').classList.add('esconder')
+            document.querySelector('#logado-usuario').innerText = `Seja bem-vindo(a)!`
+            document.querySelector('#navMinhasreservas').parentNode.classList.remove('d-none')
+            
         },
         async login(){
             var usuarioSistema = {
@@ -107,6 +114,8 @@ export default {
             await this.lerUsuario(this.readInput.email)
 
             if (descriptografarSenha(this.readInput.password, this.user)){
+                this.clearLogin()
+                localStorage.setItem('login', this.readInput.email)
                 document.querySelector('#logado').classList.remove('esconder')
                 document.querySelector('#cadastro').classList.add('esconder')
                 document.querySelector('#navMinhasreservas').parentNode.classList.remove('d-none')

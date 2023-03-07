@@ -41,6 +41,7 @@ export default {
 
       if (descriptografarSenha(this.readInput.password, this.user)){
         alert('Seja bem vindo(a)!')
+        localStorage.setItem('loginFunc', JSON.stringify(this.readInput.email))
         this.$router.push('/admHome')
       } else{
         alert ('Usuário ou senha não cadastrados!')
