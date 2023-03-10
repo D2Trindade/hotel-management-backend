@@ -20,6 +20,23 @@ class PessoaController {
         }
     }
 
+    //Métodos para login de usuários, hóspedes e funcionários
+    static async listarUsuario(req, res){
+        const { email} = req.params
+        try {
+            const infos = await database.Pessoas.findOne(
+                {
+                    where: {
+                        email: String(email)
+                    }
+                }
+            )
+            return res.status(200).json(infos)
+        } catch (error){
+            return res.status(500).json(error.message)
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     //Métodos para todas as pessoas com as regras (usuario, hospede e funcionario)
     static async listarPessoas(req, res){

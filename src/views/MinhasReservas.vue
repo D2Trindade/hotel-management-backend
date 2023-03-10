@@ -83,10 +83,21 @@ export default {
 
     },
     mounted: function() {
+        // Verifica se está logado
+        if (!localStorage.getItem('login')) {
+            alert('Acesso restrito')
+            this.$router.push('/')
+        }
+
         // Recupera reservas e o login do localstorage
         let objReservas = JSON.parse(localStorage.getItem('reservas'))
         let login = localStorage.getItem('login')
         let quarto
+
+        if (objReservas == null) {
+            return
+        }
+
         for (let i = 0; i < objReservas.length; i++) {
             // Serão carregados em 'this.reservas' apenas as reservas que pertençam ao login atual
             if (objReservas[i].user == login) {

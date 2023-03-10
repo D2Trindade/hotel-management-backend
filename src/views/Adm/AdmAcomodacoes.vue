@@ -22,8 +22,8 @@
                             <td>{{acomodacao.descricao_acomodacoes}}</td>
                             <td>RS {{acomodacao.preco}},00</td>
                             <td style="width: 18%;">
-                                <a class="btn" @click="editar(index)"><i class="fa-solid fa-user-pen" data-bs-toggle="modal" data-bs-target="#modalEdit"></i></a>
-                                <a class="btn" @click="deactivate(acomodacao.id)"><i class="fa-solid fa-user-slash"></i></a>
+                                <a class="btn" @click="editar(index)"><i class="fa-solid fa-square-pen fa-2x" data-bs-toggle="modal" data-bs-target="#modalEdit"></i></a>
+                                <a class="btn" @click="deactivate(acomodacao.id)"><i class="fa-solid fa-trash-can fa-2x"></i></a>
                             </td>
                         </tr>
                         <tr>
@@ -46,7 +46,7 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="#!" @click="add" class="btn btn-waves green darken-2"><i class="fa-sharp fa-solid fa-user-plus"></i></a>
+                                <a href="#!" @click="add" class="btn btn-waves green darken-2"><i class="fa-solid fa-circle-plus fa-2x"></i></a>
                             </td>
                         </tr>
                     </tbody>

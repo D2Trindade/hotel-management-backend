@@ -6,7 +6,7 @@ const router = Router()
 
 //Rota para login
 router.get('/pessoas/:email', PessoaController.listarLoginUsuario)
-
+router.get('/pessoas/user/:email', PessoaController.listarUsuario)
 
 
 // Rotas para todas as pessoas com as 3 regras (usuario, hospede, funcionario)

@@ -22,8 +22,8 @@
                             <td>{{user.email}}</td>
                             <td>{{user.role}}</td>
                             <td style="width: 18%;">
-                                <a class="btn" @click="editar(index)"><i class="fa-solid fa-user-pen" data-bs-toggle="modal" data-bs-target="#modalEdit"></i></a>
-                                <a class="btn" @click="deactivate(user.id)"><i class="fa-solid fa-user-slash"></i></a>
+                                <a class="btn" @click="editar(index)"><i class="fa-solid fa-square-pen fa-2x" data-bs-toggle="modal" data-bs-target="#modalEdit"></i></a>
+                                <a class="btn" @click="deactivate(user.id)"><i class="fa-solid fa-trash-can fa-2x"></i></a>
                             </td>
                         </tr>
                         <tr>
@@ -43,13 +43,13 @@
                                 <div class="input-field">
                                     <label for="frole">Função</label>
                                     <select class="input-padrao p-primario" id="frole" v-model="addInput.role">
-                                        <option value="usuario">Usuário</option>
-                                        <option value="funcionario">Funcionário</option>
+                                        <option value="pusuario">Usuário</option>
+                                        <option value="pfuncionario">Funcionário</option>
                                     </select>
                                 </div>
                             </td>
                             <td>
-                                <a href="#!" @click="add" class="btn btn-waves green darken-2"><i class="fa-sharp fa-solid fa-user-plus"></i></a>
+                                <a href="#!" @click="add" class="btn btn-waves green darken-2"><i class="fa-solid fa-circle-plus fa-2x"></i></a>
                             </td>
                         </tr>
                     </tbody>
@@ -82,8 +82,8 @@
                         <div class="input-field col s6">
                             <label for="mfrole">Função</label>
                             <select class="input-padrao p-primario bg-white" id="mfrole" v-model="editInput.role">
-                                <option value="usuario">Usuário</option>
-                                <option value="funcionario">Funcionário</option>
+                                <option value="pusuario">Usuário</option>
+                                <option value="pfuncionario">Funcionário</option>
                             </select>
                         </div>
                     </form>
