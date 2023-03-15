@@ -4,7 +4,7 @@
             <div class="p-top">
                 <h2 class="h2-primario">Lista de Acomodações</h2>
             </div>
-            <div class="">
+            <div class="box-table">
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -12,6 +12,7 @@
                             <th>Tipo</th>
                             <th>Descrição</th>
                             <th>Preço</th>
+                            <th>Caminho da Imagem</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -21,6 +22,7 @@
                             <td>{{acomodacao.tipo}}</td>
                             <td>{{acomodacao.descricao_acomodacoes}}</td>
                             <td>RS {{acomodacao.preco}},00</td>
+                            <td>IMAGEM</td>
                             <td style="width: 18%;">
                                 <a class="btn" @click="editar(index)"><i class="fa-solid fa-square-pen fa-2x" data-bs-toggle="modal" data-bs-target="#modalEdit"></i></a>
                                 <a class="btn" @click="deactivate(acomodacao.id)"><i class="fa-solid fa-trash-can fa-2x"></i></a>
@@ -30,22 +32,27 @@
                             <td colspan="2">
                                 <div class="input-field">
                                     <label for="ftipo">Tipo</label>
-                                    <input class="input-padrao p-primario" placeholder="Tipo" id="ftipo" type="text" v-model="addInput.tipo">
+                                    <input class="input-padrao" placeholder="Tipo" id="ftipo" type="text" v-model="addInput.tipo">
+                                </div>
+                                <div class="input-field">
+                                    <label for="fimagem">Carregar imagem</label>
+                                    <input class="input-padrao col p-1" type="file" id="fimagem" ref="files">
+                                    <!-- <button type="button" class="btn btn-secondary" @click="carregaArquivo">Enviar</button> -->
                                 </div>
                             </td>
                             <td>
                                 <div class="input-field">
                                     <label for="fdescricao">Descrição</label>
-                                    <textarea class="input-padrao p-primario" placeholder="Descrição" id="fdescricao" v-model="addInput.descricao_acomodacoes" />
+                                    <textarea class="input-padrao" placeholder="Descrição" id="fdescricao" v-model="addInput.descricao_acomodacoes" />
                                 </div>
                             </td>
                             <td>
                                 <div class="input-field">
                                     <label for="fpreco">Preço</label>
-                                    <input class="input-padrao p-primario" placeholder="Preço" id="fpreco" type="number" v-model="addInput.preco" min="1"/>
+                                    <input class="input-padrao" placeholder="Preço" id="fpreco" type="number" v-model="addInput.preco" min="1"/>
                                 </div>
                             </td>
-                            <td>
+                            <td colspan="2">
                                 <a href="#!" @click="add" class="btn btn-waves green darken-2"><i class="fa-solid fa-circle-plus fa-2x"></i></a>
                             </td>
                         </tr>
@@ -80,6 +87,11 @@
                             <label for="mpreco">Preço</label>
                             <input class="input-padrao p-primario" placeholder="Preço" id="mpreco" type="number" v-model="editInput.preco" min="1"/>
                         </div>
+                        <div class="input-field col s6">
+                            <label for="mimagem">Carregar Imagem</label>
+                            <input id="mimagem" type="text" class="input-padrao p-primario bg-secondary text-white" v-model="editInput.imagem" readonly>
+                            <input class="input-padrao col p-1" type="file" id="mcarregaimagem"/>
+                        </div>
                     </form>
                 </div>                
                 <div class="modal-footer">
@@ -97,17 +109,19 @@ export default {
         return {
             logado: false,
             acomodacoes: [],
+            imagem: null,
             editInput: {
                 id: "",
                 tipo: "",
                 descricao_acomodacoes: "",
-                preco: ""
+                preco: "",
+                imagem: "IMAGEM"
             },
             addInput: {
                 tipo: "",
                 descricao_acomodacoes: "",
                 preco: ""
-            },
+            }
         }
     },
     methods: {
@@ -126,6 +140,7 @@ export default {
                 tipo: this.editInput.tipo,
                 descricao_acomodacoes: this.editInput.descricao_acomodacoes,
                 preco: this.editInput.preco,
+                // imagem: `/acomodacoes/${this.carregaArquivo()}`,
                 updatedAt: new Date().getTime()
             } 
             const conexao = require('@/assets/js/ConexaoAPI.js')
@@ -141,6 +156,7 @@ export default {
                 tipo: this.addInput.tipo,
                 descricao_acomodacoes: this.addInput.descricao_acomodacoes,
                 preco: this.addInput.preco,
+                // imagem: `/acomodacoes/${this.carregaArquivo()}`,
                 createdAt: new Date().getTime(),
                 updatedAt: new Date().getTime()
             }
@@ -156,6 +172,15 @@ export default {
             const conexao = require('@/assets/js/ConexaoAPI.js')
             await conexao.deleteAPI(`/acomodacoes/${index}`)
             this.readAcomodacoes()
+        },
+        async carregaArquivo() {
+            this.imagem = this.$refs.files.files[0]
+            const formData = new FormData()
+            formData.append(`file`, this.imagem)
+
+            const conexao = require('@/assets/js/ConexaoAPI.js')
+            let data = await conexao.postImages('/uploadAcomodacoes', formData)
+            return data.files[0].filename
         }
     },
     mounted: function() {
@@ -178,5 +203,11 @@ export default {
 <style scoped>
 textarea {
     height: 5rem;
+}
+table {
+    max-width: 100px;
+}
+.box-table {
+    overflow-x: auto ;
 }
 </style>
