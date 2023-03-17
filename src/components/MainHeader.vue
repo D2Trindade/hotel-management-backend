@@ -16,7 +16,9 @@
         <div class="d-flex align-items-center">
             <router-link to="/" class="header--logo" title="Grand Hoyal Hotel"></router-link>
             <div class="header--container2">
-                <SocialMedia />
+
+                <!-- <SocialMedia /> -->
+                
                 <p class="header--container2-container alinhamento m-1 p-1">
                     A sofisticação e o conforto ideal.<br />
                     Vem ser Grand, vem ser Royal!
@@ -55,13 +57,13 @@ import "@/assets/css/main.css"
 import "@/assets/css/header-footer.css"
 import "@/assets/css/login.css"
 
-import SocialMedia from '@/components/SocialMedia.vue'
+// import SocialMedia from '@/components/SocialMedia.vue'
 import ModalLogin from '@/components/ModalLogin.vue'
 
 export default {
     name: 'MainHeader',
     components: {
-        SocialMedia,
+        // SocialMedia,
         ModalLogin
     },
     methods: {

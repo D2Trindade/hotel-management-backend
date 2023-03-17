@@ -102,9 +102,6 @@
     background-size: 250%;
     background-position: right top;
   }
-  .navbar-expand-sm, .wrap {
-    flex-wrap: wrap !important;
-  }
 }
 
 

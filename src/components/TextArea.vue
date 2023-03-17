@@ -14,6 +14,7 @@ export default {
   margin: 1rem;
   border-radius: 10px;
   box-shadow: 1px 3px 5px #213242;
-  width: 90%;
+  width: 100%;
+  padding: 10px;
 }
 </style>
