@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
   Acomodacoes.init({
     tipo: DataTypes.STRING,
     descricao_acomodacoes: DataTypes.STRING,
-    preco: DataTypes.DECIMAL
+    preco: DataTypes.DECIMAL,
+    caminhoDaImagem: DataTypes.STRING
   }, {
     sequelize,
     paranoid: true,
