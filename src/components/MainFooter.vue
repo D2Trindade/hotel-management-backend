@@ -27,12 +27,12 @@
                         </p>
                     </div>
                     <div class="col d-flex">
-                        <SocialMedia />
-                    </div>
+                        <SocialMedia />                        
+                    </div>                    
                 </div>
                  <div class="col-sm-6 row color--bege p-5">
                     <a><i class="text-center col-sm-12 fa fa-map fa-5x" aria-hidden="true"></i></a>
-                    <p class="text-center color--bege">Veja no maps</p>
+                    <p class="text-center color--bege p">Veja no maps</p>
                 </div>
             </div>
             <div class="p-1">

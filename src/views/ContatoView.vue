@@ -1,8 +1,8 @@
 <template>
 
-  <main class="contato-responsivo">
-    <section class="contato-estiloForm section-pd p-top">
-      <article>
+  <main class="">
+    <section class="contato-estiloForm section-pd">
+      <article class="contato-responsivo">
         <h2 class="h2-primario">Entre em contato conosco</h2>
 
         <form class="h3-primario" action="" @submit="enviar($event)">
@@ -36,7 +36,7 @@
             <!-- Menu Select -->
             <ul class="list-style">
               <li class="contato-li">
-                <label for="assuntos" class="p-primario">Escolha o assunto que deseja falar:</label>
+                <label for="assuntos" class="p-primario">Selecione um assunto:</label>
                 <br />
                 <MenuSelect 
                 opt00="..."
@@ -95,9 +95,6 @@ export default {
 .esconder {
   display: none;
 }
-.p-top {
-  padding: 1rem 0 0 0;
-}
 
 .h2-primario {
   padding: 0 1.5rem;
@@ -124,20 +121,6 @@ export default {
   font: "Quicksand";
 }
 
-.input-basico {
-  border: white solid 1px;
-  margin: 0.5rem;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 1px 3px 5px #213242;
-  width: 70vw;
-  height: 2.5rem;
-}
-
-.contato-textArea{
-  width: 80%;
-}
-
 .btn-terceario {
   border: white solid 1px;
   margin: 1rem;
@@ -148,13 +131,23 @@ export default {
   box-shadow: 1px 3px 5px #213242;
 }
 
-.btn-terceario {
-  border: white solid 1px;
-  margin: 1rem;
-  width: 22vw;
-  height: 2.5rem;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 1px 3px 5px #213242;
+.contato-responsivo{
+  width: 50%;
+  margin: 0 auto;
+  padding: 30px;
 }
+
+@media (max-width: 600px) {
+  .contato-responsivo {
+    width: 100%;    
+  }
+  .h2-primario {
+    text-align: center;
+  }
+  .contato-legenda {
+    text-align: center;
+  }
+}
+
+
 </style>

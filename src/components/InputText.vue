@@ -20,7 +20,6 @@ export default {
 .input-padrao {
     border: white solid 1px;
     margin: 1rem;
-    width: 22vw;
     height: 2.5rem;
     text-align: center;
     border-radius: 10px;
@@ -33,7 +32,7 @@ export default {
     text-align: center;
     border-radius: 10px;
     box-shadow: 1px 3px 5px #213242;
-    width: 70vw;
+    width: 100%;
     height: 2.5rem;
 }
 

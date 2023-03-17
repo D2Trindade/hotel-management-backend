@@ -21,6 +21,14 @@ export default {
 }
 </script>
 
+<style>
+
+.input-padrao {
+  width: 100%;
+}
+
+</style>
+
 <!-- 
     <option value="null_opc">{{opt00}}</option>
     <option value="cancelamento">{{opt01}}</option>
