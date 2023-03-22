@@ -22,7 +22,7 @@
                             <td>{{acomodacao.tipo}}</td>
                             <td>{{acomodacao.descricao_acomodacoes}}</td>
                             <td>RS {{acomodacao.preco}},00</td>
-                            <td>IMAGEM</td>
+                            <td>{{acomodacao.caminhoDaImagem}}</td>
                             <td style="width: 18%;">
                                 <a class="btn" @click="editar(index)"><i class="fa-solid fa-square-pen fa-2x" data-bs-toggle="modal" data-bs-target="#modalEdit"></i></a>
                                 <a class="btn" @click="deactivate(acomodacao.id)"><i class="fa-solid fa-trash-can fa-2x"></i></a>
@@ -89,8 +89,8 @@
                         </div>
                         <div class="input-field col s6">
                             <label for="mimagem">Carregar Imagem</label>
-                            <input id="mimagem" type="text" class="input-padrao p-primario bg-secondary text-white" v-model="editInput.imagem" readonly>
-                            <input class="input-padrao col p-1" type="file" id="mcarregaimagem"/>
+                            <input id="mimagem" type="text" class="input-padrao p-primario bg-secondary text-white" v-model="editInput.caminhoDaImagem" readonly>
+                            <input class="input-padrao col p-1" type="file" id="mcarregaimagem" ref="updateFiles"/>
                         </div>
                     </form>
                 </div>                
@@ -115,7 +115,7 @@ export default {
                 tipo: "",
                 descricao_acomodacoes: "",
                 preco: "",
-                imagem: "IMAGEM"
+                caminhoDaImagem: ""
             },
             addInput: {
                 tipo: "",
@@ -136,27 +136,46 @@ export default {
         },
         async updateUser() {
             let id = this.editInput.id
-            let dados = {
-                tipo: this.editInput.tipo,
-                descricao_acomodacoes: this.editInput.descricao_acomodacoes,
-                preco: this.editInput.preco,
-                // imagem: `/acomodacoes/${this.carregaArquivo()}`,
-                updatedAt: new Date().getTime()
-            } 
+            let image = await this.carregaArquivo('updateFiles');
+            let dados;
+
+            // Sem alterar imagem
+            if (image == undefined) {
+                dados = {
+                    tipo: this.editInput.tipo,
+                    descricao_acomodacoes: this.editInput.descricao_acomodacoes,
+                    preco: this.editInput.preco,
+                    updatedAt: new Date().getTime()
+                }
+            }
+            // Também alterar a imagem
+            else {
+                dados = {
+                    tipo: this.editInput.tipo,
+                    descricao_acomodacoes: this.editInput.descricao_acomodacoes,
+                    preco: this.editInput.preco,
+                    caminhoDaImagem: `/acomodacoes/${image}`,
+                    updatedAt: new Date().getTime()
+                } 
+            }
             const conexao = require('@/assets/js/ConexaoAPI.js')
             await conexao.putAPI(`/acomodacoes/${id}`, dados)
+
+            this.readAcomodacoes()
         },
-        add: function() {
-            if (this.addInput.tipo == '' || this.addInput.descricao_acomodacoes == '' || this.addInput.preco == '') {
+        async add() {
+            if (this.addInput.tipo == '' || this.addInput.descricao_acomodacoes == '' || 
+                this.addInput.preco == '' || this.$refs.files.files[0] == undefined)  {
                 alert('Favor preencher todos os campos!')
                 return
             }
 
+            let image = await this.carregaArquivo('addFiles');
             var newAcomodacao = {
                 tipo: this.addInput.tipo,
                 descricao_acomodacoes: this.addInput.descricao_acomodacoes,
                 preco: this.addInput.preco,
-                // imagem: `/acomodacoes/${this.carregaArquivo()}`,
+                caminhoDaImagem: `/acomodacoes/${image}`,
                 createdAt: new Date().getTime(),
                 updatedAt: new Date().getTime()
             }
@@ -173,8 +192,14 @@ export default {
             await conexao.deleteAPI(`/acomodacoes/${index}`)
             this.readAcomodacoes()
         },
-        async carregaArquivo() {
-            this.imagem = this.$refs.files.files[0]
+        async carregaArquivo(mode) {
+            if (mode == 'updateFiles') {
+                this.imagem = this.$refs.updateFiles.files[0]
+            }
+            else {
+                this.imagem = this.$refs.files.files[0]
+            }
+
             const formData = new FormData()
             formData.append(`file`, this.imagem)
 
