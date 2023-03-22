@@ -66,20 +66,25 @@
 
 @media (max-width: 734px) {
   .header--container{
-    height: 240px;
+    height: 50vh;
+    background-size: 100%;
+    background-position: right top;
   } 
 }
 
 @media (max-width: 579px) {
   .header--container {
-    height: 200px;
+    height: 50vh;
+    background-size: 200%;
+    background-position: right top;
   }
 }
 
 @media (max-width: 489px) {
   .header--container {
-    height: 170px;
-    background-color: #213242;
+    height: 50vh;
+    background-size: 300%;
+    background-position: right top;
   }
 }
 
