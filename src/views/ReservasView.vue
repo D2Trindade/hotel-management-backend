@@ -545,4 +545,11 @@ export default {
         font-size: larger;
     }
 }
+
+@media (max-width: 960px) {
+    .input-padrao{
+        width: 35vh;
+
+    }
+}
 </style>
