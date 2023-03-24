@@ -1,5 +1,5 @@
 <template>
-    <input class="responsivo" type="submit" :value="tipo">
+    <input class="responsive-input" type="submit" :value="tipo">
 </template>
 
 <script>
@@ -13,8 +13,8 @@ export default {
 
 <style scoped>
 
-@media (max-width: 600px){
-  .responsivo {
+@media (max-width: 600px) {
+  .responsive-input {
     width: 100%;
   }
 }
