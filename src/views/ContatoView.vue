@@ -137,7 +137,7 @@ export default {
   padding: 30px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .contato-responsivo {
     width: 100%;    
   }
