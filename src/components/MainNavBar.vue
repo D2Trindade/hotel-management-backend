@@ -1,5 +1,6 @@
 <template>
-    <nav class="navbar navbar-expand-sm global-bg-azul">
+    <nav class="navbar wrap navbar-expand-sm global-bg-azul">
+        <MenuHamburguer class="displayHamburguer"/>
         <router-link to="/" class="navbar-brand ps-3 color--bege">Grand Royal Hotel</router-link>
         <div class="collapse navbar-collapse" id="colNav">
             <ul class="navbar-nav" v-if="logged">
@@ -18,6 +19,8 @@
 </template>
 
 <script>
+import MenuHamburguer from './MenuHamburguer.vue'
+
 export default {
     name: 'MainNavBar',
     data() {
@@ -37,6 +40,9 @@ export default {
                 {id: 'navAdmAcomodacoes', nome: 'Acomodações', link: '/admAcomodacoes'}
             ]
         }
+    },
+    components: {
+        MenuHamburguer
     },
     computed: {
         logged() {
