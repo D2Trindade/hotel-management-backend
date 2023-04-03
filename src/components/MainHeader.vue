@@ -4,6 +4,9 @@
             <span class="p-4" id="logado-usuario"></span>
         </div>
         <div class="container esconder" id="logado">
+            <button class="btn btn-secondary text-bg-secondary col p-1 " @click="meuPerfil">
+                Meu perfil
+            </button>
             <button class="btn btn-secondary text-bg-secondary col p-1 " @click="sairLogin">
                 Sair
             </button>
@@ -62,6 +65,14 @@ import ModalLogin from '@/components/ModalLogin.vue'
 
 export default {
     name: 'MainHeader',
+    data() {
+        return {
+            perfilInput: {
+                email: "",
+                password: ""
+            },
+        }
+    },
     components: {
         // SocialMedia,
         ModalLogin
@@ -82,22 +93,21 @@ export default {
         sairAdm() {
             localStorage.removeItem('loginFunc')
             this.$router.push('/')
+        },
+        async lerUsuarioCompl(email) {
+            const api = require('@/assets/js/ConexaoAPI.js')
+            let usuario = await api.getAPI(`/pessoas/user/${email}`)
+            return usuario
+        },
+        meuPerfil() {
+            this.$router.push('/meuPerfil')
         }
     },
-    mounted: function() {
-        let cadastros = []
-        cadastros = JSON.parse(localStorage.getItem('cadastros'))
-
+    mounted: async function() {
         // Validação de login realizado
         if (localStorage.getItem('login')) {
-            let cadastroEmail =  localStorage.getItem('login')
-            // Varre a lista de cadastros
-            for (let i = 0; i < cadastros.length; i++) {
-                if (cadastros[i].email == cadastroEmail) {
-                    document.querySelector('#logado-usuario').innerText = `Bem-vindo ${cadastros[i].nome}`
-                    continue
-                }
-            }
+            let usuario = await this.lerUsuarioCompl(localStorage.getItem('login'))
+            document.querySelector('#logado-usuario').innerText = `Bem-vindo ${usuario.nome}`
 
             document.querySelector('#logado').classList.remove('esconder')
             document.querySelector('#cadastro').classList.add('esconder')
@@ -117,7 +127,6 @@ export default {
         logged() {
             if (document.querySelector('#logadoAdm') && !localStorage.getItem('loginFunc')) {
                 document.querySelector('#logadoAdm').classList.add('esconder')
-                // document.querySelector('#logado').classList.add('esconder')
             }
 
             if(this.$route.name != null) return this.$route.name.includes('adm')

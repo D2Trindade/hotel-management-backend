@@ -244,7 +244,6 @@ export default {
             document.querySelector('#logado').classList.remove('esconder')
             document.querySelector('#cadastro').classList.add('esconder')
             document.querySelector('#navMinhasreservas').parentNode.classList.remove('d-none')
-            document.querySelector('#logado-usuario').innerText = `Seja bem-vindo(a)!`
             
             this.$router.push('/')
 

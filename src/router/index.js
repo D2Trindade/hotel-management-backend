@@ -33,6 +33,11 @@ const routes = [
     component: () => import('../views/MinhasReservas.vue')
   },
   {
+    path: '/meuperfil',
+    name: 'meuperfil',
+    component: () => import('../views/MeuPerfil.vue')
+  },
+  {
     path: '/loginfunc',
     name: 'loginfunc',
     component: () => import('../views/LoginFunc.vue')
@@ -46,8 +51,7 @@ const routes = [
     path: '/admUsers',
     name: 'admUsers',
     component: () => import('../views/Adm/AdmUsers.vue')
-  }
-  ,
+  },
   {
     path: '/admAcomodacoes',
     name: 'admAcomodacoes',
