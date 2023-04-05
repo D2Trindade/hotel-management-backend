@@ -7,7 +7,7 @@
                 </div>
                 <div class="col d-flex align-items-center justify-content-between">
                     <div class="p-1">
-                        <MainNavBar />
+                        
                     </div>
                 </div>
             </div>
@@ -43,18 +43,24 @@
 </template>
 
 <script>
-import MainNavBar from '@/components/MainNavBar.vue'
+
 import SocialMedia from '@/components/SocialMedia.vue'
 
 export default {
     name: 'MainFooter',
     components: {
-        MainNavBar,
+        
         SocialMedia
     }
 }
 </script>
 
 <style scoped>
+@media (max-width: 575px) {
+  
+  /*div:nth-child(2){
+        display:none;
+    }*/
+}
 
 </style>

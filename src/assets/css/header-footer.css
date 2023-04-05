@@ -82,11 +82,15 @@
 }
 
 @media (max-width: 575px) {
-  .header--container {
+  /* .header--container {
     height: 40vh;
     background-size: 190%;
     background-position: right top;
+  } */
+  header{
+    display: none;
   }
+  
   .navbar-expand-sm, .wrap {
     flex-wrap: wrap !important;
   }
@@ -96,13 +100,13 @@
   }
 }
 
-@media (max-width: 489px) {
+/* @media (max-width: 489px) {
   .header--container {
     height: 40vh;
     background-size: 250%;
     background-position: right top;
   }
-}
+} */
 
 
 
