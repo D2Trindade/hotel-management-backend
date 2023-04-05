@@ -36,4 +36,11 @@ main {
 nav a {
   font-weight: bold;
 }
+
+@media (max-width: 575px) {
+  main{
+    margin-top: 1vh;
+  }
+  
+}
 </style>

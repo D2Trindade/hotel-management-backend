@@ -1,7 +1,10 @@
 <template>
-    <nav class="navbar wrap navbar-expand-sm global-bg-azul">
+    <nav class="navbar wrap navbar-expand-sm global-bg-azul fixed">
         <MenuHamburguer class="displayHamburguer"/>
-        <router-link to="/" class="navbar-brand ps-3 color--bege">Grand Royal Hotel</router-link>
+        <div class="col">
+            <router-link to="/" class="navbar-brand ps-3 color--bege">Grand Royal Hotel</router-link>
+            <SocialMedia class="displayHamburguer"/>
+        </div>
         <div class="collapse navbar-collapse" id="colNav">
             <ul class="navbar-nav" v-if="logged">
                 <li class="nav-item" v-for="pg in paginas" :key="pg.id">
@@ -20,6 +23,7 @@
 
 <script>
 import MenuHamburguer from './MenuHamburguer.vue'
+import SocialMedia from './SocialMedia.vue'
 
 export default {
     name: 'MainNavBar',
@@ -42,7 +46,8 @@ export default {
         }
     },
     components: {
-        MenuHamburguer
+        MenuHamburguer,
+        SocialMedia
     },
     computed: {
         logged() {
@@ -59,5 +64,13 @@ export default {
 </script>
 
 <style scoped>
-
+@media (max-width: 575px) {
+    .navbar{
+        width: 100vw;
+        position:sticky;
+        z-index: 3;
+        top: 0;
+    }
+    
+}
 </style>
