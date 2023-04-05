@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     paranoid: true,
-    defaultScope: {where: {ativo: true}},
+    defaultScope: {where: {status: true}},
     modelName: 'Reservas',
   });
   return Reservas;
