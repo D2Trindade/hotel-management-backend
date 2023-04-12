@@ -239,6 +239,7 @@ export default {
             // Realiza login
             alert('Seja bem vindo(a)!')
             localStorage.setItem('login', JSON.stringify(this.readInput.email))
+            localStorage.setItem('currentUserId', id)
             this.clearLogin()
             localStorage.setItem('login', this.readInput.email)
             document.querySelector('#logado').classList.remove('esconder')

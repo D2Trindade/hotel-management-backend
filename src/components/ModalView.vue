@@ -69,6 +69,7 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js'
 import { ConsumoBar, ConsumoQuarto } from '@/assets/js/Consumo'
+//import axios from "axios";
 
 export default {
     name: "ModalView",
@@ -118,6 +119,13 @@ export default {
             }
             this.reservas.push(reserva)
             localStorage.setItem('reservas', JSON.stringify(this.reservas))
+
+            reserva.pessoa_id = Number(localStorage.getItem('currentUserId'))
+            reserva.acomodacao_id = 1
+            reserva.servicosporpessoa_id = 1
+            //axios.post("http://localhost:3000/reservas", reserva)
+            const conexao = require('@/assets/js/ConexaoAPI.js')
+            conexao.postAPI(`/reservas`, reserva)
 
             this.clearReserva()
             this.$router.push('/')
